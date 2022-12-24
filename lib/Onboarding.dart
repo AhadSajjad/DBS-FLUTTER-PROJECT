@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import "package:onboarding/onboarding.dart";
-
+import 'package:flutter/cupertino.dart';
 class MyApp extends StatefulWidget {
   const MyApp({Key? key}) : super(key: key);
 
@@ -25,13 +25,21 @@ class _MyAppState extends State<MyApp> {
           shadowColor: Colors.white,
         ),
         backgroundColor: background,
-        body:
-        Center(
+        body: Stack(
+          children : [
+          Center(
           child: Column(
             children: [
               Container(
                 height: 500,width: 500,
-                child: Image.asset('thomas.png',height: 200,width: 500),
+                child: Column(
+                  children:[
+                    SizedBox(height: 50),
+                    Text("WELCOME TO DEEZ RAILWAYS!", style: TextStyle(color: Colors.white, fontSize: 30),),
+                    SizedBox(height: 50),
+                  Image.asset('thomas.png',height: 300,width: 500),
+              ],
+              ),
               ),
               Center(
                 child: Container(
@@ -81,7 +89,9 @@ class _MyAppState extends State<MyApp> {
           ),
 
         ),
+    ],
       ),
+    ),
     );
   }
 
