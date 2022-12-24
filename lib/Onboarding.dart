@@ -15,14 +15,18 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       home: Scaffold(
         appBar: AppBar(
-          title: Text("DEEZ RAILWAYS"),
-          backgroundColor: Colors.black54,
+          title: Text("DEEZ RAILWAYS",style: TextStyle(fontWeight: FontWeight.w500)),
+          leading: Icon(Icons.train),
+          backgroundColor: background,
           foregroundColor: Colors.white,
+          shadowColor: Colors.white,
         ),
         backgroundColor: background,
-        body: Center(
+        body:
+        Center(
           child: Column(
             children: [
               Container(
