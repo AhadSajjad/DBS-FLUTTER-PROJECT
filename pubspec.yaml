@@ -70,6 +70,9 @@ flutter:
   assets:
      - assets/thomas.png
      - assets/train.png
+     - assets/nighttrain.jpg
+     - assets/purpletrain.jpg
+     - assets/login.png
 #  fonts:
 #    - family: Poppins
 #      fonts:

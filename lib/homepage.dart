@@ -20,8 +20,8 @@ class _HomePageState extends State<HomePage> {
         length: 3,
         child: Scaffold(
           appBar: AppBar(
-            title: const Text("HOME PAGE",
-                style: TextStyle(fontWeight: FontWeight.w500,fontSize: 15)),
+            // title: const Text("HOME PAGE",
+            //     style: TextStyle(fontWeight: FontWeight.w500,fontSize: 15)),
             leading: const Icon(Icons.train),
             backgroundColor: background,
             foregroundColor: Colors.white,
@@ -52,7 +52,7 @@ class _HomePageState extends State<HomePage> {
                   children:[
                     NewBookingPage(),
                     PreviousBookingPage(),
-                    LoginPage(),
+                    LogInPage(),
                   ]
               ),
             ],
