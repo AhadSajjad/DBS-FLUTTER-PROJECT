@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:learning/LogInPage.dart';
 import "package:onboarding/onboarding.dart";
+import 'previousBookingPage.dart';
+import 'bookingPage.dart';
+import 'logInPage.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -13,83 +15,52 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: Scaffold(
-          backgroundColor: background,
+      debugShowCheckedModeBanner: false,
+      home: DefaultTabController(
+        length: 3,
+        child: Scaffold(
           appBar: AppBar(
+            title: const Text("HOME PAGE",
+                style: TextStyle(fontWeight: FontWeight.w500, fontSize: 15)),
             leading: const Icon(Icons.train),
             backgroundColor: background,
             foregroundColor: Colors.white,
             shadowColor: Colors.white,
-            title: Text('Second Screen'),
+            bottom: TabBar(
+              tabs: [
+                Tab(
+                    icon: Icon(Icons.airplane_ticket_rounded),
+                    text: "BOOK A TICKET"),
+                Tab(
+                    icon: Icon(Icons.drive_file_move_sharp),
+                    text: "VIEW PREVIOUS TICKET"),
+                Tab(icon: Icon(Icons.login_rounded), text: "EMPLOYEE LOGIN"),
+              ],
+            ),
           ),
           body: Stack(
             children: [
-              Center(
-                child: Column(
-                  children: [
-                    Padding(
-                        padding:
-                            EdgeInsets.only(left: 300, top: 200, right: 300),
-                        child: Container(
-                            height: 100,
-                            width: 250,
-                            child: ElevatedButton(
-                                onPressed: () {},
-                                style: ElevatedButton.styleFrom(
-                                    backgroundColor: Colors.teal,
-                                    elevation: 10,
-                                    textStyle: const TextStyle(
-                                        fontWeight: FontWeight.w800)),
-                                child: Row(children: [
-                                  Icon(Icons.train_outlined),
-                                  Text('Book A Ticket')
-                                ])))),
-                    Padding(
-                        padding:
-                            EdgeInsets.only(left: 300, top: 30, right: 300),
-                        child: Container(
-                            height: 100,
-                            width: 250,
-                            child: ElevatedButton(
-                                onPressed: () {},
-                                style: ElevatedButton.styleFrom(
-                                    backgroundColor: Colors.teal,
-                                    elevation: 10,
-                                    textStyle: const TextStyle(
-                                        fontWeight: FontWeight.w800)),
-                                child: Row(children: [
-                                  Icon(Icons.edit_note),
-                                  Text('Check Already Booked Ticket')
-                                ])))),
-                    Padding(
-                        padding:
-                            EdgeInsets.only(left: 300, top: 30, right: 300),
-                        child: Container(
-                            height: 100,
-                            width: 250,
-                            child: ElevatedButton(
-                                onPressed: () {
-                                  Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) =>
-                                            const LogInPage()),
-                                  );
-                                },
-                                style: ElevatedButton.styleFrom(
-                                    backgroundColor: Colors.teal,
-                                    elevation: 10,
-                                    textStyle: const TextStyle(
-                                        fontWeight: FontWeight.w800)),
-                                child: Row(children: [
-                                  Icon(Icons.person),
-                                  Text('Login As Employee')
-                                ]))))
-                  ],
+              Container(
+                height: 800,
+                width: 1300,
+                margin: const EdgeInsets.only(top: 0.0),
+                decoration: BoxDecoration(
+                  color: background,
+                  border: Border.all(
+                    width: 0.0,
+                    color: Colors.grey,
+                  ),
                 ),
-              )
+              ),
+              TabBarView(children: [
+                const NewBookingPage(),
+                PreviousBookingPage(),
+                LogInPage(),
+              ]),
             ],
-          )),
+          ),
+        ),
+      ),
     );
   }
 }
