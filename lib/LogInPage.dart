@@ -10,16 +10,16 @@ class LogInPage extends StatelessWidget {
         backgroundColor: background,
         appBar: AppBar(
           backgroundColor: background,
-          title: Text('Employee Login',
+          title: const Text('Employee Login',
               style: TextStyle(fontWeight: FontWeight.w500)),
-          leading: Icon(Icons.train),
+          leading: const Icon(Icons.train),
           foregroundColor: Colors.white,
           shadowColor: Colors.white,
         ),
         body: Column(
           children: [
             Container(
-              margin: EdgeInsets.only(left: 400, top: 200),
+              margin: const EdgeInsets.only(left: 400, top: 200),
               height: 50,
               width: 300,
               alignment: Alignment.center,
@@ -27,8 +27,8 @@ class LogInPage extends StatelessWidget {
                 color: Colors.teal,
                 borderRadius: BorderRadius.circular(20),
               ),
-              child: Padding(
-                padding: const EdgeInsets.only(left: 20),
+              child: const Padding(
+                padding: EdgeInsets.only(left: 20),
                 child: TextField(
                   decoration: InputDecoration(
                       border: InputBorder.none,
@@ -38,15 +38,15 @@ class LogInPage extends StatelessWidget {
               ),
             ),
             Container(
-              margin: EdgeInsets.only(left: 400, top: 50),
+              margin: const EdgeInsets.only(left: 400, top: 50),
               height: 50,
               width: 300,
               decoration: BoxDecoration(
                 color: Colors.teal,
                 borderRadius: BorderRadius.circular(20),
               ),
-              child: Padding(
-                padding: const EdgeInsets.only(left: 20),
+              child: const Padding(
+                padding: EdgeInsets.only(left: 20),
                 child: TextField(
                   decoration: InputDecoration(
                       border: InputBorder.none,
@@ -63,7 +63,7 @@ class LogInPage extends StatelessWidget {
                       backgroundColor: Colors.teal,
                       elevation: 10,
                       textStyle: const TextStyle(fontWeight: FontWeight.w800)),
-                  child: Text('Login')),
+                  child: const Text('Login')),
             )
           ],
 
