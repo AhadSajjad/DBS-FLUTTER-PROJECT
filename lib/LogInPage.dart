@@ -19,7 +19,7 @@ class LogInPage extends StatelessWidget {
         body: Column(
           children: [
             Container(
-              margin: EdgeInsets.only(left: 250, top: 200),
+              margin: EdgeInsets.only(left: 400, top: 200),
               height: 50,
               width: 300,
               alignment: Alignment.center,
@@ -38,7 +38,7 @@ class LogInPage extends StatelessWidget {
               ),
             ),
             Container(
-              margin: EdgeInsets.only(left: 250, top: 50),
+              margin: EdgeInsets.only(left: 400, top: 50),
               height: 50,
               width: 300,
               decoration: BoxDecoration(
@@ -56,7 +56,7 @@ class LogInPage extends StatelessWidget {
               ),
             ),
             Padding(
-              padding: const EdgeInsets.only(left: 250, top: 30),
+              padding: const EdgeInsets.only(left: 400, top: 30),
               child: ElevatedButton(
                   onPressed: () {},
                   style: ElevatedButton.styleFrom(
