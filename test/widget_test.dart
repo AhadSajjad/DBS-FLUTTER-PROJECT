@@ -7,7 +7,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:learning/Onboarding.dart';
+import 'package:learning/onboarding.dart';
 
 import 'package:learning/main.dart';
 
