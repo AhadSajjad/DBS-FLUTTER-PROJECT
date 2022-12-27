@@ -1,0 +1,197 @@
+import 'package:flutter/material.dart';
+import "package:onboarding/onboarding.dart";
+
+class BookingDetails extends StatefulWidget {
+  const BookingDetails({Key? key}) : super(key: key);
+
+  @override
+  State<BookingDetails> createState() => _BookingDetailsState();
+}
+
+class _BookingDetailsState extends State<BookingDetails> {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: background,
+      body: Stack(
+        children: [
+          Column(
+            children: [
+              Padding(
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 0.0,
+                  vertical: 0.0,
+                ),
+                child: Container(
+                  height: 634,
+                  width: 1320,
+                  child: FittedBox(
+                    child: Image.asset('nighttrain.jpg'),
+                    fit: BoxFit.fill,
+                  ),
+                ),
+              )
+            ],
+          ),
+          Center(
+              child: Column(children: [
+            SizedBox(height: 50),
+            Text("Please Enter Your Details:",
+                style: TextStyle(
+                  fontSize: 22,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.white,
+                )),
+            SizedBox(height: 80),
+            Row(
+              children: [
+                Container(
+                    margin: EdgeInsets.only(left: 230),
+                    height: 50,
+                    width: 300,
+                    decoration: BoxDecoration(
+                        color: Colors.teal,
+                        borderRadius: BorderRadius.circular(50)),
+                    child: Padding(
+                      padding: EdgeInsets.only(left: 20),
+                      child: TextField(
+                        obscureText: true,
+                        decoration: InputDecoration(
+                          border: InputBorder.none,
+                          hintText: 'First Name',
+                          hintStyle: TextStyle(color: Colors.black),
+                          icon: Icon(
+                            Icons.person,
+                            color: background,
+                          ),
+                        ),
+                      ),
+                    )),
+                Container(
+                    margin: EdgeInsets.only(left: 230),
+                    height: 50,
+                    width: 300,
+                    decoration: BoxDecoration(
+                        color: Colors.teal,
+                        borderRadius: BorderRadius.circular(50)),
+                    child: Padding(
+                      padding: EdgeInsets.only(left: 20),
+                      child: TextField(
+                        obscureText: true,
+                        decoration: InputDecoration(
+                          border: InputBorder.none,
+                          hintText: 'Last Name',
+                          hintStyle: TextStyle(color: Colors.black),
+                          icon: Icon(
+                            Icons.person,
+                            color: background,
+                          ),
+                        ),
+                      ),
+                    ))
+              ],
+            ),
+            SizedBox(height: 50),
+            Row(
+              children: [
+                Container(
+                    margin: EdgeInsets.only(left: 230),
+                    height: 50,
+                    width: 300,
+                    decoration: BoxDecoration(
+                        color: Colors.teal,
+                        borderRadius: BorderRadius.circular(50)),
+                    child: Padding(
+                      padding: EdgeInsets.only(left: 20),
+                      child: TextField(
+                        obscureText: true,
+                        decoration: InputDecoration(
+                          border: InputBorder.none,
+                          hintText: 'Mobile Number',
+                          hintStyle: TextStyle(color: Colors.black),
+                          icon: Icon(
+                            Icons.phone,
+                            color: background,
+                          ),
+                        ),
+                      ),
+                    )),
+                Container(
+                    margin: EdgeInsets.only(left: 230),
+                    height: 50,
+                    width: 300,
+                    decoration: BoxDecoration(
+                        color: Colors.teal,
+                        borderRadius: BorderRadius.circular(50)),
+                    child: Padding(
+                      padding: EdgeInsets.only(left: 20),
+                      child: TextField(
+                        obscureText: true,
+                        decoration: InputDecoration(
+                          border: InputBorder.none,
+                          hintText: 'Date Of Booking',
+                          hintStyle: TextStyle(color: Colors.black),
+                          icon: Icon(
+                            Icons.calendar_month,
+                            color: background,
+                          ),
+                        ),
+                      ),
+                    ))
+              ],
+            ),
+            SizedBox(height: 50),
+            Row(
+              children: [
+                Container(
+                    margin: EdgeInsets.only(left: 230),
+                    height: 50,
+                    width: 300,
+                    decoration: BoxDecoration(
+                        color: Colors.teal,
+                        borderRadius: BorderRadius.circular(50)),
+                    child: Padding(
+                      padding: EdgeInsets.only(left: 20),
+                      child: TextField(
+                        obscureText: true,
+                        decoration: InputDecoration(
+                          border: InputBorder.none,
+                          hintText: 'Time Slot',
+                          hintStyle: TextStyle(color: Colors.black),
+                          icon: Icon(
+                            Icons.punch_clock_rounded,
+                            color: background,
+                          ),
+                        ),
+                      ),
+                    )),
+                Container(
+                    margin: EdgeInsets.only(left: 230),
+                    height: 50,
+                    width: 300,
+                    decoration: BoxDecoration(
+                        color: Colors.teal,
+                        borderRadius: BorderRadius.circular(50)),
+                    child: Padding(
+                      padding: EdgeInsets.only(left: 20),
+                      child: TextField(
+                        obscureText: true,
+                        decoration: InputDecoration(
+                          border: InputBorder.none,
+                          hintText: 'E-mail',
+                          hintStyle: TextStyle(color: Colors.black),
+                          icon: Icon(
+                            Icons.mail,
+                            color: background,
+                          ),
+                        ),
+                      ),
+                    ))
+              ],
+            )
+          ]))
+        ],
+      ),
+    );
+  }
+}
