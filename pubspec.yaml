@@ -43,6 +43,7 @@ dependencies:
   audioplayers: ^1.1.1
   assets_audio_player: ^3.0.6
   audioplayer: ^0.8.1
+  dropdown_button2: ^1.9.2
 
 dev_dependencies:
   flutter_test:

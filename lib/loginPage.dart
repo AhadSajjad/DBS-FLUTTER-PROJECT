@@ -19,12 +19,31 @@ class LogInPage extends StatelessWidget {
                   horizontal: 0.0,
                   vertical: 0.0,
                 ),
-                child: Image.asset('purpletrain.jpg',width: 920,),
+                child:
+                    Container(
+                      height: 574,width: 1320,
+                      child: FittedBox(
+                        child: Image.asset('purpletrain.jpg'),
+                        fit: BoxFit.fill,
+                      ),
+                      // child: Image(
+                      //   image: AssetImage('lib/images/portadaSchamann5.png'),
+                      //   alignment: Alignment.center,
+                      //   height: double.infinity,
+                      //   width: double.infinity,
+                      //   fit: BoxFit.fill,
+                      // ),
+                    //   foregroundDecoration:  BoxDecoration(
+                    //     image: DecorationImage(
+                    //         image: Image.asset('purpletrain.jpg'),
+                    //         fit: BoxFit.fill),
+                    // ),
+
+              ),
               ),
             ],
           ),
-          Padding(
-            padding: const EdgeInsets.only(left: 950.0),
+          Center(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.center,
@@ -32,13 +51,7 @@ class LogInPage extends StatelessWidget {
                 SizedBox(
                   height: 60,
                 ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 0.0,
-                    vertical: 0.0,
-                  ),
-                  child: Image.asset('login.png',width: 200,),
-                ),
+                Image.asset('login.png',width: 200,),
                 SizedBox(
                   height: 40,
                 ),

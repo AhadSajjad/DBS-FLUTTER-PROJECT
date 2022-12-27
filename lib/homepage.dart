@@ -22,10 +22,11 @@ class _HomePageState extends State<HomePage> {
           appBar: AppBar(
             // title: const Text("HOME PAGE",
             //     style: TextStyle(fontWeight: FontWeight.w500,fontSize: 15)),
-            leading: const Icon(Icons.train),
+            //leading: const Icon(Icons.train),
             backgroundColor: background,
             foregroundColor: Colors.white,
             shadowColor: Colors.white,
+            toolbarHeight: 0,
             bottom: TabBar(
               tabs: [
                 Tab(icon: Icon(Icons.airplane_ticket_rounded), text: "BOOK A TICKET"),
