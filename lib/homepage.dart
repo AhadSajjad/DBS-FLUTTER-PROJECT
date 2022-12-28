@@ -15,6 +15,17 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      theme: ThemeData(
+          brightness: Brightness.light,
+          // add tabBarTheme
+          tabBarTheme: const TabBarTheme(
+              labelColor: Colors.pink,
+              labelStyle: TextStyle(color: Colors.pink), // color for text
+              indicator: UnderlineTabIndicator( // color for indicator (underline)
+                  borderSide: BorderSide(color: Colors.pink))),
+          primaryColor: Colors.pink[800], // outdated and has no effect to Tabbar
+          accentColor: Colors.cyan[600] // deprecated,
+      ),
       debugShowCheckedModeBanner: false,
       home: DefaultTabController(
         length: 3,
@@ -29,7 +40,7 @@ class _HomePageState extends State<HomePage> {
             toolbarHeight: 0,
             bottom: TabBar(
               tabs: [
-                Tab(icon: Icon(Icons.airplane_ticket_rounded), text: "BOOK A TICKET"),
+                Tab(icon: Icon(Icons.airplane_ticket_rounded), text: "BOOK A TICKET",),
                 Tab(icon: Icon(Icons.drive_file_move_sharp), text: "VIEW PREVIOUS TICKET"),
                 Tab(icon: Icon(Icons.login_rounded), text: "EMPLOYEE LOGIN"),
               ],

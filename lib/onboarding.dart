@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import "package:onboarding/onboarding.dart";
 import "package:learning/homepage.dart";
 import 'dart:async';
+import 'package:google_fonts/google_fonts.dart';
 
 class MyApp extends StatefulWidget {
   const MyApp({super.key});
@@ -75,7 +76,9 @@ class _OnboardingPageState extends State<OnboardingPage> {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children:[
                   Icon(Icons.train_rounded,size: 250,color: Colors.white,),
-                  Text("DEEZ RAILWAYS",style: TextStyle(color: Colors.white,fontSize: 40,fontWeight: FontWeight.w600),),
+                  Text("Deez Railways",style:GoogleFonts.satisfy(textStyle:TextStyle(
+                  fontSize: 60,
+                      color: Colors.white, fontWeight: FontWeight.bold)),),
               ],
               ),
               ),

@@ -44,6 +44,7 @@ dependencies:
   assets_audio_player: ^3.0.6
   audioplayer: ^0.8.1
   dropdown_button2: ^1.9.2
+  google_fonts: ^3.0.1
 
 dev_dependencies:
   flutter_test:
@@ -69,11 +70,7 @@ flutter:
 
   # To add assets to your application, add an assets section, like this:
   assets:
-     - assets/thomas.png
-     - assets/train.png
-     - assets/nighttrain.jpg
-     - assets/purpletrain.jpg
-     - assets/login.png
+     - assets/
 #  fonts:
 #    - family: Poppins
 #      fonts:

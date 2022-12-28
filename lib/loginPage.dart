@@ -1,11 +1,15 @@
-import 'dart:html';
-
 import 'package:flutter/material.dart';
 import "package:onboarding/onboarding.dart";
+import 'package:google_fonts/google_fonts.dart';
+class LogInPage extends StatefulWidget {
+  const LogInPage({Key? key}) : super(key: key);
 
-class LogInPage extends StatelessWidget {
-  const LogInPage({super.key});
+  @override
+  State<LogInPage> createState() => _LogInPageState();
+}
 
+class _LogInPageState extends State<LogInPage> {
+  bool _isObscure = true;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -13,33 +17,19 @@ class LogInPage extends StatelessWidget {
       body: Stack(
         children: [
           Column(
-              children: [
+            children: [
               Padding(
                 padding: const EdgeInsets.symmetric(
                   horizontal: 0.0,
                   vertical: 0.0,
                 ),
-                child:
-                    Container(
-                      height: 574,width: 1320,
-                      child: FittedBox(
-                        child: Image.asset('purpletrain.jpg'),
-                        fit: BoxFit.fill,
-                      ),
-                      // child: Image(
-                      //   image: AssetImage('lib/images/portadaSchamann5.png'),
-                      //   alignment: Alignment.center,
-                      //   height: double.infinity,
-                      //   width: double.infinity,
-                      //   fit: BoxFit.fill,
-                      // ),
-                    //   foregroundDecoration:  BoxDecoration(
-                    //     image: DecorationImage(
-                    //         image: Image.asset('purpletrain.jpg'),
-                    //         fit: BoxFit.fill),
-                    // ),
-
-              ),
+                child: Container(
+                  height: 574, width: 1320,
+                  child: FittedBox(
+                    fit: BoxFit.fill,
+                    child: Image.asset('purpletrain.jpg'),
+                  ),
+                ),
               ),
             ],
           ),
@@ -48,11 +38,14 @@ class LogInPage extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                SizedBox(
+                const SizedBox(
                   height: 60,
                 ),
-                Image.asset('login.png',width: 200,),
-                SizedBox(
+                Image.asset(
+                  'login_1.png',
+                  width: 200,
+                ),
+                const SizedBox(
                   height: 40,
                 ),
                 Container(
@@ -60,68 +53,102 @@ class LogInPage extends StatelessWidget {
                   width: 300,
                   alignment: Alignment.center,
                   decoration: BoxDecoration(
-                    color: Colors.teal,
+                    //color: Colors.teal,
+                    border: Border.all(
+                      color: Colors.white,
+                      width: 1,
+                    ),
                     borderRadius: BorderRadius.circular(50),
                   ),
-                  child: const Padding(
+                  child: Padding(
                     padding: EdgeInsets.only(left: 20),
                     child: TextField(
+                      style: GoogleFonts.lato(textStyle:TextStyle(
+                          fontSize: 14,
+                          color: Colors.white)),
+                      cursorColor: Colors.white,
                       decoration: InputDecoration(
                           border: InputBorder.none,
                           hintText: "Username",
                           icon: Icon(
                             Icons.person,
-                            color: background,
+                            color: Colors.white70,
                           )),
                     ),
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 20,
                 ),
                 Container(
                   height: 50,
                   width: 300,
                   decoration: BoxDecoration(
-                    color: Colors.teal,
+                    //color: Colors.teal,
+                    border: Border.all(
+                      color: Colors.white,
+                      width: 1,
+                    ),
                     borderRadius: BorderRadius.circular(50),
                   ),
-                  child: const Padding(
-                    padding: EdgeInsets.only(left: 20),
+                  child: Padding(
+                    padding: const EdgeInsets.only(left: 20),
                     child: TextField(
-                      obscureText: true,
+                      style: GoogleFonts.lato(textStyle:TextStyle(
+                          fontSize: 14,
+                          color: Colors.white)),
+                      cursorColor: Colors.white,
+                      obscureText: _isObscure,
                       decoration: InputDecoration(
                           border: InputBorder.none,
                           hintText: "Password",
-                          icon: Icon(
+                          icon: const Icon(
                             Icons.lock,
-                            color: background,
+                            color: Colors.white70,
+                          ),
+                          suffixIcon: Padding(
+                            padding: const EdgeInsets.only(right: 13.0),
+                            child: IconButton(
+                                color: Colors.white70,
+                                icon: Icon(_isObscure
+                                    ? Icons.visibility
+                                    : Icons.visibility_off),
+                                onPressed: () {
+                                  Colors.white70;
+                                  setState(() {
+                                    _isObscure = !_isObscure;
+                                  });
+                                }),
                           )),
                     ),
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 25,
                 ),
                 ElevatedButton(
                     style: ButtonStyle(
                       overlayColor: MaterialStateProperty.resolveWith<Color?>(
                           (Set<MaterialState> states) {
-                        if (states.contains(MaterialState.pressed))
-                          return Colors.tealAccent; //<-- SEE HERE
+                        if (states.contains(MaterialState.pressed)) {
+                          return Colors.white;
+                        } //<-- SEE HERE
                         return null;
                       }),
-                      backgroundColor: MaterialStateProperty.all(background),
+                      backgroundColor:
+                          MaterialStateProperty.all(const Color(0xFF4A305D)),
                       shape: MaterialStateProperty.all<RoundedRectangleBorder>(
                         RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(18.0),
-                            side: BorderSide(color: Colors.teal)),
+                            side: const BorderSide(color: Colors.white)),
                       ),
                     ),
                     onPressed: () {},
-                    child: const Text(
-                      'Login',
-                      style: TextStyle(fontSize: 15),
+                    child: Text(
+                      'LOGIN !',
+                        style: GoogleFonts.josefinSans(textStyle:TextStyle(
+                            fontSize: 14,
+                            color: Colors.white)),
                     )),
               ],
             ),
