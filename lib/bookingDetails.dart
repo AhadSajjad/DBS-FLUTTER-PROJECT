@@ -47,12 +47,12 @@ class _BookingDetailsState extends State<BookingDetails> {
                           overlayColor: MaterialStateProperty.resolveWith<Color?>(
                                   (Set<MaterialState> states) {
                                 if (states.contains(MaterialState.pressed)) {
-                                  return Color(0xFF4A305D);
+                                  return Colors.white;
                                 } //<-- SEE HERE
                                 return null;
                               }),
                           backgroundColor:
-                          MaterialStateProperty.all(Color(0xFF4A305D)),
+                          MaterialStateProperty.all(const Color(0xFF4A305D)),
                           shape: MaterialStateProperty.all<RoundedRectangleBorder>(
                             RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(18.0),
@@ -91,8 +91,8 @@ class _BookingDetailsState extends State<BookingDetails> {
                         decoration: BoxDecoration(
                           //color: Colors.teal,
                           border: Border.all(
-                            color: Color(0xFF4A305D),
-                            width: 2,
+                            color: Colors.white,
+                            width: 1,
                           ),
                           borderRadius: BorderRadius.circular(50),
                         ),
@@ -122,8 +122,8 @@ class _BookingDetailsState extends State<BookingDetails> {
                         decoration: BoxDecoration(
                           //color: Colors.teal,
                           border: Border.all(
-                            color: Color(0xFF4A305D),
-                            width: 2,
+                            color: Colors.white,
+                            width: 1,
                           ),
                           borderRadius: BorderRadius.circular(50),
                         ),
@@ -158,8 +158,8 @@ class _BookingDetailsState extends State<BookingDetails> {
                         decoration: BoxDecoration(
                           //color: Colors.teal,
                           border: Border.all(
-                            color: Color(0xFF4A305D),
-                            width: 2,
+                            color: Colors.white,
+                            width: 1,
                           ),
                           borderRadius: BorderRadius.circular(50),
                         ),
@@ -189,8 +189,8 @@ class _BookingDetailsState extends State<BookingDetails> {
                         decoration: BoxDecoration(
                           //color: Colors.teal,
                           border: Border.all(
-                            color: Color(0xFF4A305D),
-                            width: 2,
+                            color: Colors.white,
+                            width: 1,
                           ),
                           borderRadius: BorderRadius.circular(50),
                         ),
@@ -225,8 +225,8 @@ class _BookingDetailsState extends State<BookingDetails> {
                         decoration: BoxDecoration(
                           //color: Colors.teal,
                           border: Border.all(
-                            color: Color(0xFF4A305D),
-                            width: 2,
+                            color: Colors.white,
+                            width: 1,
                           ),
                           borderRadius: BorderRadius.circular(50),
                         ),
@@ -256,8 +256,8 @@ class _BookingDetailsState extends State<BookingDetails> {
                         decoration: BoxDecoration(
                           //color: Colors.teal,
                           border: Border.all(
-                            color: Color(0xFF4A305D),
-                            width: 2,
+                            color: Colors.white,
+                            width: 1,
                           ),
                           borderRadius: BorderRadius.circular(50),
                         ),
@@ -314,3 +314,4 @@ class _BookingDetailsState extends State<BookingDetails> {
     );
   }
 }
+

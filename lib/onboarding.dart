@@ -37,7 +37,7 @@ class _OnboardingPageState extends State<OnboardingPage> {
 
   void initState(){
     super.initState();
-    Timer(Duration(seconds: 3),()=>
+    Timer(Duration(seconds: 2),()=>
         Navigator.pushNamed(context, '/second'),
     );
   }
