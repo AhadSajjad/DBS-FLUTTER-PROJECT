@@ -1,0 +1,56 @@
+INSERT INTO BOOKING (Booking_ID, Booking_Date, Seat_No, Coach_No, Price)
+VALUES ('B001', '2022-01-01', 1, 'C1', 1000),
+       ('B002', '2022-01-02', 2, 'C2', 2000),
+       ('B003', '2022-01-03', 3, 'C3', 3000),
+       ('B004', '2022-01-01', 4, 'C2', 2000),
+       ('B005', '2022-01-04', 5, 'C2', 2000),
+       ('B006', '2022-01-01', 6, 'C1', 1000),
+       ('B007', '2022-01-02', 7, 'C1', 1000),
+       ('B008', '2022-01-02', 8, 'C3', 3000),
+       ('B009', '2022-01-02', 9, 'C3', 3000),
+       ('B010', '2022-01-04', 10, 'C1', 1000);
+
+INSERT INTO PASSENGER (Passenger_ID, First_Name, Last_Name, Booking_ID)
+VALUES ('P001', 'Michael', 'Jones', 'B001'),
+       ('P002', 'Emily', 'Smith', 'B002'),
+       ('P003', 'David', 'Williams', 'B003'),
+       ('P004', 'Sophia', 'Johnson', 'B004'),
+       ('P005', 'Jacob', 'Brown', 'B005'),
+       ('P006', 'Olivia', 'Davis', 'B006'),
+       ('P007', 'Noah', 'Miller', 'B007'),
+       ('P008', 'Ava', 'Garcia', 'B008'),
+       ('P009', 'Liam', 'Rodriguez', 'B009'),
+       ('P010', 'Isabella', 'Martinez', 'B010');
+       
+INSERT INTO TRAIN (Train_ID, Train_Name, Booking_ID)
+VALUES ('T001', 'Express', 'B001'),
+       ('T002', 'Superfast', 'B002'),
+       ('T003', 'Deluxe', 'B003'),
+       ('T004', 'Supreme', 'B004'),
+       ('T005', 'King Pin', 'B005');
+       
+INSERT INTO STATION (Station_ID, Station_Name)
+VALUES ('S001', 'Lahore'),
+       ('S002', 'Islamabad'),
+       ('S003', 'Karachi'),
+       ('S004', 'Multan'),
+       ('S005', 'Faisalabad');
+       
+INSERT INTO TRACKS (Track_ID, Track_Availability)
+VALUES ('TK001', 1),
+       ('TK002', 1),
+       ('TK003', 0),
+       ('TK004', 0),
+       ('TK005', 1);
+       
+INSERT INTO `TRAIN SCHEDULE` (Train_ID, Source_Station_ID, Destination_Station_ID, Track_ID, Time_in, Time_Out, Sequence_Number)
+VALUES ('T001', 'S001', 'S002', 'TK001', '08:00:00', '12:00:00', 1),
+       ('T002', 'S002', 'S001', 'TK002', '13:00:00', '17:00:00', 1),
+       ('T003', 'S003', 'S004', 'TK003', '18:00:00', '22:00:00', 1),
+       ('T004', 'S004', 'S001', 'TK003', '7:00:00', '11:00:00', 2),
+       ('T005', 'S005', 'S003', 'TK003', '10:00:00', '14:00:00', 1);
+       
+INSERT INTO EMPLOYEE (First_Name, Last_Name, Username, Password)
+VALUES ('John', 'Doe', 'johndoe', 'password1'),
+       ('Jane', 'Joe', 'janedoe', 'password2'),
+       ('Mary', 'Smith', 'marysmith', 'password3');
