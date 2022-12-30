@@ -1,6 +1,17 @@
+import 'dart:convert';
+import 'dart:io';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:flutter/material.dart';
 import "package:onboarding/onboarding.dart";
+import 'package:syncfusion_flutter_datagrid/datagrid.dart';
+import 'package:http/http.dart' as http;
+import 'api_connection/api_connection.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'bookingDetails.dart';
+import 'dart:convert';
+import 'package:mysql1/mysql1.dart';
+import 'sql.dart';
+
 class LogInPage extends StatefulWidget {
   const LogInPage({Key? key}) : super(key: key);
 
@@ -9,6 +20,93 @@ class LogInPage extends StatefulWidget {
 }
 
 class _LogInPageState extends State<LogInPage> {
+  var Username;
+  TextEditingController username = TextEditingController();
+  TextEditingController password = TextEditingController();
+
+  login() {
+    if (username.text == '' || password.text == '') {
+      Fluttertoast.showToast(
+        msg: "Both fields cannot be blank!",
+        toastLength: Toast.LENGTH_SHORT,
+        gravity: ToastGravity.CENTER,
+        fontSize: 16,
+      );
+    }
+    else {
+      // var url = "https://192.168.43.82/localconnect/login.php";
+      // var response = http.get(Uri.parse(url));
+      // //var data = json.decode(response.body);
+      // Future <http
+      // response.then(http.Response res)
+      Future<String> fetchData() async {
+        final client = HttpClient();
+        final request = await client.getUrl(
+            Uri.parse("https://10.7.40.45/localconnect/login.php"));
+        final response = await request.close();
+        return await response.transform(utf8.decoder).join();
+        //return response;
+      }
+      fetchData().then((body) {
+        var data = body;
+        if (data == "Success") {
+          Fluttertoast.showToast(
+            msg: "Successful!",
+            toastLength: Toast.LENGTH_SHORT,
+            gravity: ToastGravity.CENTER,
+            fontSize: 16,);
+          Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (context) =>
+                  const BookingDetails()));
+        }
+        else {
+          Fluttertoast.showToast(
+            msg: "Please enter valid credentials!",
+            toastLength: Toast.LENGTH_SHORT,
+            gravity: ToastGravity.CENTER,
+            fontSize: 16,
+          );
+        }
+      }
+      );
+    }
+  }
+
+  // bool inCorrectLogin = false;
+
+  // Future<bool?> login({
+  //   required MySql db,
+  //   required TextEditingController usernameController,
+  //   required TextEditingController passwordController,
+  // }) async {
+  //   db.getConnection().then((conn) async {
+  //     var results = await conn.query(
+  //         'select Username, Password from employee where username = \'${usernameController.text}\' and password = MD5(\'${passwordController.text}\')');
+  //     if (results.isEmpty) {
+  //       setState(() {
+  //         inCorrectLogin = true;
+  //         Fluttertoast.showToast(
+  //           msg: "Please enter valid credentials!",
+  //           toastLength: Toast.LENGTH_SHORT,
+  //           gravity: ToastGravity.CENTER,
+  //           fontSize: 16,
+  //         );
+  //       });
+  //     } else {
+  //               Fluttertoast.showToast(
+  //                 msg: "Login Successful!",
+  //                 toastLength: Toast.LENGTH_SHORT,
+  //                 gravity: ToastGravity.CENTER,
+  //                 fontSize: 16,);
+  //       Navigator.push(context,
+  //           MaterialPageRoute(builder: (context) => const BookingDetails()));
+  //     }
+  //   });
+  //   return null;
+  // }
+
   bool _isObscure = true;
   @override
   Widget build(BuildContext context) {
@@ -24,7 +122,8 @@ class _LogInPageState extends State<LogInPage> {
                   vertical: 0.0,
                 ),
                 child: Container(
-                  height: 574, width: 1320,
+                  height: 574,
+                  width: 1320,
                   child: FittedBox(
                     fit: BoxFit.fill,
                     child: Image.asset('purpletrain.jpg'),
@@ -63,9 +162,10 @@ class _LogInPageState extends State<LogInPage> {
                   child: Padding(
                     padding: EdgeInsets.only(left: 20),
                     child: TextField(
-                      style: GoogleFonts.lato(textStyle:TextStyle(
-                          fontSize: 14,
-                          color: Colors.white)),
+                      controller: username,
+                      style: GoogleFonts.lato(
+                          textStyle:
+                              TextStyle(fontSize: 14, color: Colors.white)),
                       cursorColor: Colors.white,
                       decoration: InputDecoration(
                           border: InputBorder.none,
@@ -94,9 +194,10 @@ class _LogInPageState extends State<LogInPage> {
                   child: Padding(
                     padding: const EdgeInsets.only(left: 20),
                     child: TextField(
-                      style: GoogleFonts.lato(textStyle:TextStyle(
-                          fontSize: 14,
-                          color: Colors.white)),
+                      controller: password,
+                      style: GoogleFonts.lato(
+                          textStyle:
+                              TextStyle(fontSize: 14, color: Colors.white)),
                       cursorColor: Colors.white,
                       obscureText: _isObscure,
                       decoration: InputDecoration(
@@ -143,12 +244,14 @@ class _LogInPageState extends State<LogInPage> {
                             side: const BorderSide(color: Colors.white)),
                       ),
                     ),
-                    onPressed: () {},
+                    onPressed: () {
+                      login();
+                    },
                     child: Text(
                       'LOGIN !',
-                        style: GoogleFonts.josefinSans(textStyle:TextStyle(
-                            fontSize: 14,
-                            color: Colors.white)),
+                      style: GoogleFonts.josefinSans(
+                          textStyle:
+                              TextStyle(fontSize: 14, color: Colors.white)),
                     )),
               ],
             ),

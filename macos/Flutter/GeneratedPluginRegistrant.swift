@@ -7,7 +7,6 @@ import Foundation
 
 import assets_audio_player
 import assets_audio_player_web
-import audioplayer
 import audioplayers_darwin
 import path_provider_macos
 import sqflite
@@ -15,7 +14,6 @@ import sqflite
 func RegisterGeneratedPlugins(registry: FlutterPluginRegistry) {
   AssetsAudioPlayerPlugin.register(with: registry.registrar(forPlugin: "AssetsAudioPlayerPlugin"))
   AssetsAudioPlayerWebPlugin.register(with: registry.registrar(forPlugin: "AssetsAudioPlayerWebPlugin"))
-  AudioplayerPlugin.register(with: registry.registrar(forPlugin: "AudioplayerPlugin"))
   AudioplayersDarwinPlugin.register(with: registry.registrar(forPlugin: "AudioplayersDarwinPlugin"))
   PathProviderPlugin.register(with: registry.registrar(forPlugin: "PathProviderPlugin"))
   SqflitePlugin.register(with: registry.registrar(forPlugin: "SqflitePlugin"))
