@@ -1,0 +1,150 @@
+import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:onboarding/onboarding.dart';
+
+class EmployeePage extends StatefulWidget {
+  const EmployeePage({Key? key}) : super(key: key);
+
+  @override
+  State<EmployeePage> createState() => _EmployeePageState();
+}
+
+class _EmployeePageState extends State<EmployeePage> {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+        backgroundColor: Colors.blue,
+        body: Stack(children: [
+          Column(children: [
+            Center(
+                child: Column(children: [
+              SizedBox(height: 50),
+              Text("EMPLOYEE VIEW",
+                  style: GoogleFonts.acme(
+                      textStyle: TextStyle(
+                    fontSize: 30,
+                    color: Colors.white,
+                  ))),
+            ])),
+            SizedBox(
+              height: 100,
+            ),
+            Table(
+              defaultColumnWidth: FixedColumnWidth(200.0),
+              border: TableBorder.all(
+                  color: Colors.black, style: BorderStyle.solid, width: 2),
+              children: [
+                TableRow(children: [
+                  Text(
+                    'STATION NAME',
+                    style: TextStyle(fontSize: 20),
+                  ),
+                  Text(
+                    'STATION ID',
+                    style: TextStyle(fontSize: 20),
+                  )
+                ]),
+                TableRow(children: [
+                  Text(
+                    'data',
+                    style: TextStyle(fontSize: 15),
+                  ),
+                  Text(
+                    'data',
+                    style: TextStyle(fontSize: 15),
+                  )
+                ]),
+                TableRow(children: [
+                  Text(
+                    'data',
+                    style: TextStyle(fontSize: 15),
+                  ),
+                  Text(
+                    'data',
+                    style: TextStyle(fontSize: 15),
+                  )
+                ])
+              ],
+            ),
+            SizedBox(
+              height: 50,
+            ),
+            Table(
+              defaultColumnWidth: FixedColumnWidth(200.0),
+              border: TableBorder.all(
+                  color: Colors.black, style: BorderStyle.solid, width: 2),
+              children: [
+                TableRow(children: [
+                  Text(
+                    'TRAIN NAME',
+                    style: TextStyle(fontSize: 20),
+                  ),
+                  Text(
+                    'TRAIN ID',
+                    style: TextStyle(fontSize: 20),
+                  )
+                ]),
+                TableRow(children: [
+                  Text(
+                    'data',
+                    style: TextStyle(fontSize: 15),
+                  ),
+                  Text(
+                    'data',
+                    style: TextStyle(fontSize: 15),
+                  )
+                ]),
+                TableRow(children: [
+                  Text(
+                    'data',
+                    style: TextStyle(fontSize: 15),
+                  ),
+                  Text(
+                    'data',
+                    style: TextStyle(fontSize: 15),
+                  )
+                ])
+              ],
+            ),
+            SizedBox(height: 50,),
+            Table(
+              defaultColumnWidth: FixedColumnWidth(200.0),
+              border: TableBorder.all(
+                  color: Colors.black, style: BorderStyle.solid, width: 2),
+              children: [
+                TableRow(children: [
+                  Text(
+                    'TRAIN NAME',
+                    style: TextStyle(fontSize: 20),
+                  ),
+                  Text(
+                    'TRAIN ID',
+                    style: TextStyle(fontSize: 20),
+                  )
+                ]),
+                TableRow(children: [
+                  Text(
+                    'data',
+                    style: TextStyle(fontSize: 15),
+                  ),
+                  Text(
+                    'data',
+                    style: TextStyle(fontSize: 15),
+                  )
+                ]),
+                TableRow(children: [
+                  Text(
+                    'data',
+                    style: TextStyle(fontSize: 15),
+                  ),
+                  Text(
+                    'data',
+                    style: TextStyle(fontSize: 15),
+                  )
+                ])
+              ],
+            ),
+          ]),
+        ]));
+  }
+}
