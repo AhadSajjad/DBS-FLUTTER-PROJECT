@@ -48,6 +48,12 @@ dependencies:
   fluttertoast: ^8.1.2
   mysql1: ^0.20.0
   syncfusion_flutter_datagrid: ^20.4.38
+  flutter_html_to_pdf: ^0.7.0
+  path_provider: ^2.0.11
+  dio: ^4.0.4
+  permission_handler: ^8.3.0
+  open_file: ^3.2.1
+  universal_html: ^2.0.8
 
 dev_dependencies:
   flutter_test:
