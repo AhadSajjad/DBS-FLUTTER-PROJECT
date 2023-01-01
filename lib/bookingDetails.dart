@@ -189,6 +189,7 @@ class _BookingDetailsState extends State<BookingDetails> {
                         controller: Contact_No,
                         inputFormatters: [
                           LengthLimitingTextInputFormatter(11),
+                          FilteringTextInputFormatter.digitsOnly
                         ],
                         style: GoogleFonts.lato(
                             textStyle:
@@ -289,24 +290,44 @@ class _BookingDetailsState extends State<BookingDetails> {
                       var data = json.decode(response.body);
                       if (response.statusCode == 200) {
                         print('${response.body}');
-                        passengerid = data['passenger_ID'];
+                        passengerid = data['passenger'];
                         Widget _buildPopupDialog(BuildContext context) {
                           return AlertDialog(
+                            backgroundColor: Color(0xFF4A305D),
                             title: const Text(
-                                'Following is your Passenger ID. Please get your ticket details from ticket viewer page'),
+                                'Following is your Passenger ID. Please get your ticket details from ticket viewer page',style: TextStyle(color: Colors.white,fontWeight: FontWeight.w600),),
                             content: Column(
                               mainAxisSize: MainAxisSize.min,
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                Text("Booking ID: $passengerid"),
+                                SizedBox(height: 5,),
+                                Text("Passenger ID: $passengerid", style: TextStyle(color: Colors.white),),
                               ],
                             ),
                             actions: <Widget>[
                               ElevatedButton(
+                                style: ButtonStyle(
+                                  overlayColor:
+                                  MaterialStateProperty.resolveWith<Color?>(
+                                          (Set<MaterialState> states) {
+                                        if (states.contains(MaterialState.pressed))
+                                          return Colors.white70; //<-- SEE HERE
+                                        return null;
+                                      }),
+                                  backgroundColor:
+                                  MaterialStateProperty.all(Colors.white),
+                                  shape: MaterialStateProperty.all<
+                                      RoundedRectangleBorder>(
+                                    RoundedRectangleBorder(
+                                        borderRadius:
+                                        BorderRadius.circular(18.0),
+                                        side: BorderSide(color: Colors.white)),
+                                  ),
+                                ),
                                 onPressed: () {
                                   Navigator.of(context).pop();
                                 },
-                                child: const Text('Close'),
+                                child: const Text('Close',style: TextStyle(color: Color(0xFF4A305D)),),
                               ),
                             ],
                           );

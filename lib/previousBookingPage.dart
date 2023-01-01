@@ -169,32 +169,61 @@ class _PreviousBookingPageState extends State<PreviousBookingPage> {
                               train = data['data'][0]['Train_ID_'];
                               Widget _buildPopupDialog(BuildContext context) {
                                 return AlertDialog(
+                                  backgroundColor: Color(0xFF4A305D),
                                   title: const Text(
-                                      'These are your booking details:'),
+                                      'These are your booking details:', style: TextStyle(color: Colors.white,fontWeight: FontWeight.w600),),
                                   content: Column(
                                     mainAxisSize: MainAxisSize.min,
                                     crossAxisAlignment:
                                         CrossAxisAlignment.start,
                                     children: [
-                                      Text("Passenger ID: $pass_id"),
-                                      Text("First Name: $first_name"),
-                                      Text("Last Name: $last_name"),
-                                      Text("Email: $email"),
-                                      Text("Contact: $contact"),
-                                      Text("Booking ID: $booking_id"),
-                                      Text("Booking Date: $booking_date"),
-                                      Text("Train: $train"),
-                                      Text("Seat: $seat"),
-                                      Text("Coach: $coach"),
-                                      Text("Price: $price"),
+                                      Text("Passenger ID: $pass_id",style: TextStyle(color: Colors.white)),
+                                      SizedBox(height: 5,),
+                                      Text("First Name: $first_name",style: TextStyle(color: Colors.white)),
+                                      SizedBox(height: 5,),
+                                      Text("Last Name: $last_name",style: TextStyle(color: Colors.white)),
+                                      SizedBox(height: 5,),
+                                      Text("Email: $email",style: TextStyle(color: Colors.white)),
+                                      SizedBox(height: 5,),
+                                      Text("Contact: $contact",style: TextStyle(color: Colors.white)),
+                                      SizedBox(height: 5,),
+                                      Text("Booking ID: $booking_id",style: TextStyle(color: Colors.white)),
+                                      SizedBox(height: 5,),
+                                      Text("Booking Date: $booking_date",style: TextStyle(color: Colors.white)),
+                                      SizedBox(height: 5,),
+                                      Text("Train: $train",style: TextStyle(color: Colors.white)),
+                                      SizedBox(height: 5,),
+                                      Text("Seat: $seat",style: TextStyle(color: Colors.white)),
+                                      SizedBox(height: 5,),
+                                      Text("Coach: $coach",style: TextStyle(color: Colors.white)),
+                                      SizedBox(height: 5,),
+                                      Text("Price: $price",style: TextStyle(color: Colors.white)),
                                     ],
                                   ),
                                   actions: <Widget>[
                                     ElevatedButton(
+                                      style: ButtonStyle(
+                                        overlayColor:
+                                        MaterialStateProperty.resolveWith<Color?>(
+                                                (Set<MaterialState> states) {
+                                              if (states.contains(MaterialState.pressed))
+                                                return Colors.white70; //<-- SEE HERE
+                                              return null;
+                                            }),
+                                        backgroundColor:
+                                        MaterialStateProperty.all(Colors.white),
+                                        shape: MaterialStateProperty.all<
+                                            RoundedRectangleBorder>(
+                                          RoundedRectangleBorder(
+                                              borderRadius:
+                                              BorderRadius.circular(18.0),
+                                              side: BorderSide(color: Colors.white)),
+                                        ),
+                                      ),
                                       onPressed: () {
                                         Navigator.of(context).pop();
                                       },
-                                      child: const Text('Close'),
+                                      child: Text('Close',style: TextStyle(color: Color(0xFF4A305D),fontWeight: FontWeight.w800)),
                                     ),
                                   ],
                                 );
@@ -222,30 +251,30 @@ class _PreviousBookingPageState extends State<PreviousBookingPage> {
                                 textStyle: const TextStyle(
                                     fontSize: 14, color: Colors.white)))),
                     const SizedBox(width: 10),
-                    ElevatedButton(
-                        style: ButtonStyle(
-                          overlayColor:
-                              MaterialStateProperty.resolveWith<Color?>(
-                                  (Set<MaterialState> states) {
-                            if (states.contains(MaterialState.pressed)) {
-                              return Colors.white;
-                            } //<-- SEE HERE
-                            return null;
-                          }),
-                          backgroundColor: MaterialStateProperty.all(
-                              const Color(0xFF4A305D)),
-                          shape:
-                              MaterialStateProperty.all<RoundedRectangleBorder>(
-                            RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(18.0),
-                                side: const BorderSide(color: Colors.white)),
-                          ),
-                        ),
-                        onPressed: () {},
-                        child: Text('CANCEL TICKET',
-                            style: GoogleFonts.josefinSans(
-                                textStyle: const TextStyle(
-                                    fontSize: 14, color: Colors.white))))
+                    // ElevatedButton(
+                    //     style: ButtonStyle(
+                    //       overlayColor:
+                    //           MaterialStateProperty.resolveWith<Color?>(
+                    //               (Set<MaterialState> states) {
+                    //         if (states.contains(MaterialState.pressed)) {
+                    //           return Colors.white;
+                    //         } //<-- SEE HERE
+                    //         return null;
+                    //       }),
+                    //       backgroundColor: MaterialStateProperty.all(
+                    //           const Color(0xFF4A305D)),
+                    //       shape:
+                    //           MaterialStateProperty.all<RoundedRectangleBorder>(
+                    //         RoundedRectangleBorder(
+                    //             borderRadius: BorderRadius.circular(18.0),
+                    //             side: const BorderSide(color: Colors.white)),
+                    //       ),
+                    //     ),
+                    //     onPressed: () {},
+                    //     child: Text('CANCEL TICKET',
+                    //         style: GoogleFonts.josefinSans(
+                    //             textStyle: const TextStyle(
+                    //                 fontSize: 14, color: Colors.white))))
                   ]),
             ]),
           )

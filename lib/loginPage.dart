@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import "package:onboarding/onboarding.dart";
 import 'package:google_fonts/google_fonts.dart';
 import 'bookingDetails.dart';
+import 'employeelogin.dart';
 import 'package:http/http.dart' as http;
 
 class LogInPage extends StatefulWidget {
@@ -15,32 +16,45 @@ class LogInPage extends StatefulWidget {
 }
 
 class _LogInPageState extends State<LogInPage> {
-
   TextEditingController user = TextEditingController();
   TextEditingController pass = TextEditingController();
 
   Future login() async {
-   // print(user.text);
-    final response = await http.post(
-      Uri.parse('http://localhost:5000/api/login'),
-      body: json.encode({
-        "username": user.text,
-        "password" : pass.text
-      }),
-      headers: {
-        "Content-Type": "application/json",
-      },
-    );
-    print(json.decode(response.body)['status']);
-    if (json.decode(response.body)['status'] == true) {
-      print('${response.body}');
-      Navigator.push(
-          context,
-          MaterialPageRoute(
-              builder: (context) =>
-              const BookingDetails()));       // PLEASE CHANGE THE ROUTE TO CORRECT PAGE AFTER THIS
+    // print(user.text);
+    if (user.text == "" || pass.text == "") {
+      Fluttertoast.showToast(
+        msg: "All fields cannot be blank!",
+        toastLength: Toast.LENGTH_SHORT,
+        timeInSecForIosWeb: 2,
+        textColor: Colors.white,
+        fontSize: 16.0,
+      );
     } else {
-      print('Request failed with status: ${response.statusCode}');
+      final response = await http.post(
+        Uri.parse('http://localhost:5000/api/login'),
+        body: json.encode({"username": user.text, "password": pass.text}),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      );
+      print(json.decode(response.body)['status']);
+      if (json.decode(response.body)['status'] == true) {
+        print('${response.body}');
+        Navigator.push(
+            context,
+            MaterialPageRoute(
+                builder: (context) =>
+                    const EmployeePage())); // PLEASE CHANGE THE ROUTE TO CORRECT PAGE AFTER THIS
+      } else {
+        print('Request failed with status: ${response.statusCode}');
+        Fluttertoast.showToast(
+          msg: "Login details incorrect!",
+          toastLength: Toast.LENGTH_SHORT,
+          timeInSecForIosWeb: 2,
+          textColor: Colors.white,
+          fontSize: 16.0,
+        );
+      }
     }
   }
 
