@@ -15,7 +15,7 @@ class PreviousBookingPage extends StatefulWidget {
 
 class _PreviousBookingPageState extends State<PreviousBookingPage> {
   TextEditingController passenger = TextEditingController();
-
+  ScrollController _scrollController = ScrollController();
   var pass_id;
   var first_name;
   var last_name;
@@ -177,27 +177,82 @@ class _PreviousBookingPageState extends State<PreviousBookingPage> {
                                     crossAxisAlignment:
                                         CrossAxisAlignment.start,
                                     children: [
-                                      Text("Passenger ID: $pass_id",style: TextStyle(color: Colors.white)),
-                                      SizedBox(height: 5,),
-                                      Text("First Name: $first_name",style: TextStyle(color: Colors.white)),
-                                      SizedBox(height: 5,),
-                                      Text("Last Name: $last_name",style: TextStyle(color: Colors.white)),
-                                      SizedBox(height: 5,),
-                                      Text("Email: $email",style: TextStyle(color: Colors.white)),
-                                      SizedBox(height: 5,),
-                                      Text("Contact: $contact",style: TextStyle(color: Colors.white)),
-                                      SizedBox(height: 5,),
-                                      Text("Booking ID: $booking_id",style: TextStyle(color: Colors.white)),
-                                      SizedBox(height: 5,),
-                                      Text("Booking Date: $booking_date",style: TextStyle(color: Colors.white)),
-                                      SizedBox(height: 5,),
-                                      Text("Train: $train",style: TextStyle(color: Colors.white)),
-                                      SizedBox(height: 5,),
-                                      Text("Seat: $seat",style: TextStyle(color: Colors.white)),
-                                      SizedBox(height: 5,),
-                                      Text("Coach: $coach",style: TextStyle(color: Colors.white)),
-                                      SizedBox(height: 5,),
-                                      Text("Price: $price",style: TextStyle(color: Colors.white)),
+                                      // Text("Passenger ID: $pass_id",style: TextStyle(color: Colors.white)),
+                                      // SizedBox(height: 5,),
+                                      // Text("First Name: $first_name",style: TextStyle(color: Colors.white)),
+                                      // SizedBox(height: 5,),
+                                      // Text("Last Name: $last_name",style: TextStyle(color: Colors.white)),
+                                      // SizedBox(height: 5,),
+                                      // Text("Email: $email",style: TextStyle(color: Colors.white)),
+                                      // SizedBox(height: 5,),
+                                      // Text("Contact: $contact",style: TextStyle(color: Colors.white)),
+                                      // SizedBox(height: 5,),
+                                      // Text("Booking ID: $booking_id",style: TextStyle(color: Colors.white)),
+                                      // SizedBox(height: 5,),
+                                      // Text("Booking Date: $booking_date",style: TextStyle(color: Colors.white)),
+                                      // SizedBox(height: 5,),
+                                      // Text("Train: $train",style: TextStyle(color: Colors.white)),
+                                      // SizedBox(height: 5,),
+                                      // Text("Seat: $seat",style: TextStyle(color: Colors.white)),
+                                      // SizedBox(height: 5,),
+                                      // Text("Coach: $coach",style: TextStyle(color: Colors.white)),
+                                      // SizedBox(height: 5,),
+                                      // Text("Price: $price",style: TextStyle(color: Colors.white)),
+                                        SingleChildScrollView(
+                                controller: _scrollController,
+                                scrollDirection: Axis.horizontal,
+                                child:DataTable(
+                                          columns: [
+                                            DataColumn(
+                                              label: Text('Passenger ID',style: TextStyle(color: Colors.white),),
+                                            ),
+                                            DataColumn(
+                                              label: Text('First Name',style: TextStyle(color: Colors.white)),
+                                            ),
+                                            DataColumn(
+                                              label: Text('Last Name',style: TextStyle(color: Colors.white)),
+                                            ),
+                                            DataColumn(
+                                              label: Text('Email',style: TextStyle(color: Colors.white)),
+                                            ),
+                                            DataColumn(
+                                              label: Text('Contact',style: TextStyle(color: Colors.white)),
+                                            ),
+                                            DataColumn(
+                                              label: Text('Booking ID',style: TextStyle(color: Colors.white)),
+                                            ),
+                                            DataColumn(
+                                              label: Text('Booking Date',style: TextStyle(color: Colors.white)),
+                                            ),
+                                            DataColumn(
+                                              label: Text('Train',style: TextStyle(color: Colors.white)),
+                                            ),
+                                            DataColumn(
+                                              label: Text('Seat',style: TextStyle(color: Colors.white)),
+                                            ),
+                                            DataColumn(
+                                              label: Text('Coach',style: TextStyle(color: Colors.white)),
+                                            ),
+                                            DataColumn(
+                                              label: Text('Price',style: TextStyle(color: Colors.white)),
+                                            ),
+                                          ],      //json.decode(response.body)['data'][0]['track_ID']
+                                          rows: [
+                                              DataRow(cells: [
+                                                DataCell(Text('$pass_id',style: TextStyle(color: Colors.white))),
+                                                DataCell(Text('$first_name',style: TextStyle(color: Colors.white))),
+                                                DataCell(Text('$last_name',style: TextStyle(color: Colors.white))),
+                                                DataCell(Text('$email',style: TextStyle(color: Colors.white))),
+                                                DataCell(Text('$contact',style: TextStyle(color: Colors.white))),
+                                                DataCell(Text('$booking_id',style: TextStyle(color: Colors.white))),
+                                                DataCell(Text('$booking_date',style: TextStyle(color: Colors.white))),
+                                                DataCell(Text('$train',style: TextStyle(color: Colors.white))),
+                                                DataCell(Text('$seat',style: TextStyle(color: Colors.white))),
+                                                DataCell(Text('$coach',style: TextStyle(color: Colors.white))),
+                                                DataCell(Text('$price',style: TextStyle(color: Colors.white))),
+                                              ])
+                                          ]),
+                                        )
                                     ],
                                   ),
                                   actions: <Widget>[
