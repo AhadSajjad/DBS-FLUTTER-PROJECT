@@ -14,7 +14,7 @@ class PreviousBookingPage extends StatefulWidget {
 }
 
 class _PreviousBookingPageState extends State<PreviousBookingPage> {
-  TextEditingController booking = TextEditingController();
+  TextEditingController passenger = TextEditingController();
 
   var pass_id;
   var first_name;
@@ -95,14 +95,14 @@ class _PreviousBookingPageState extends State<PreviousBookingPage> {
                   child: Padding(
                     padding: const EdgeInsets.only(left: 20),
                     child: TextField(
-                      controller: booking,
+                      controller: passenger,
                       style: GoogleFonts.lato(
                           textStyle: const TextStyle(
                               fontSize: 14, color: Colors.white)),
                       cursorColor: Colors.white,
                       decoration: const InputDecoration(
                           border: InputBorder.none,
-                          hintText: "Enter Booking ID",
+                          hintText: "Enter Passenger ID",
                           icon: Icon(
                             Icons.train_rounded,
                             color: Colors.white70,
@@ -134,9 +134,9 @@ class _PreviousBookingPageState extends State<PreviousBookingPage> {
                           ),
                         ),
                         onPressed: () async {
-                          if (booking.text == "") {
+                          if (passenger.text == "") {
                             Fluttertoast.showToast(
-                              msg: "Please enter a booking ID!",
+                              msg: "Please enter your Passenger ID!",
                               toastLength: Toast.LENGTH_SHORT,
                               timeInSecForIosWeb: 2,
                               textColor: Colors.white,
@@ -147,7 +147,7 @@ class _PreviousBookingPageState extends State<PreviousBookingPage> {
                               Uri.parse(
                                   'http://localhost:5000/api/checkBooking'),
                               body: json.encode({
-                                "booking_ID": booking.text,
+                                "PassengersID": passenger.text,
                               }),
                               headers: {
                                 "Content-Type": "application/json",

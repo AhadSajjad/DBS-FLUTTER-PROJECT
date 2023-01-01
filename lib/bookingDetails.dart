@@ -1,8 +1,14 @@
+import 'dart:convert';
+import 'package:fluttertoast/fluttertoast.dart';
+import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:learning/homepage.dart';
+import 'package:flutter/services.dart';
 import "package:onboarding/onboarding.dart";
 import 'package:google_fonts/google_fonts.dart';
+
+var passengerid;
 
 class BookingDetails extends StatefulWidget {
   const BookingDetails({Key? key}) : super(key: key);
@@ -12,6 +18,7 @@ class BookingDetails extends StatefulWidget {
 }
 
 class _BookingDetailsState extends State<BookingDetails> {
+
   TextEditingController First_Name = TextEditingController();
   TextEditingController Last_Name = TextEditingController();
   TextEditingController Contact_No = TextEditingController();
@@ -88,11 +95,13 @@ class _BookingDetailsState extends State<BookingDetails> {
                 ),
               ],
             ),
-            const SizedBox(height: 80),
+            const SizedBox(height: 130),
             Row(
+              //crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Container(
-                    margin: const EdgeInsets.only(left: 230),
+                    margin: const EdgeInsets.only(left: 0),
                     height: 50,
                     width: 300,
                     alignment: Alignment.center,
@@ -124,7 +133,7 @@ class _BookingDetailsState extends State<BookingDetails> {
                       ),
                     )),
                 Container(
-                    margin: const EdgeInsets.only(left: 230),
+                    margin: const EdgeInsets.only(left: 130),
                     height: 50,
                     width: 300,
                     alignment: Alignment.center,
@@ -159,9 +168,10 @@ class _BookingDetailsState extends State<BookingDetails> {
             ),
             const SizedBox(height: 50),
             Row(
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Container(
-                    margin: const EdgeInsets.only(left: 230),
+                    margin: const EdgeInsets.only(left: 0),
                     height: 50,
                     width: 300,
                     alignment: Alignment.center,
@@ -177,13 +187,16 @@ class _BookingDetailsState extends State<BookingDetails> {
                       padding: EdgeInsets.only(left: 20),
                       child: TextField(
                         controller: Contact_No,
+                        inputFormatters: [
+                          LengthLimitingTextInputFormatter(11),
+                        ],
                         style: GoogleFonts.lato(
                             textStyle:
                                 TextStyle(fontSize: 14, color: Colors.white)),
                         cursorColor: Colors.white,
                         decoration: InputDecoration(
                           border: InputBorder.none,
-                          hintText: 'Mobile Number',
+                          hintText: 'Contact',
                           hintStyle: TextStyle(color: Colors.white70),
                           icon: Icon(
                             Icons.phone,
@@ -193,7 +206,7 @@ class _BookingDetailsState extends State<BookingDetails> {
                       ),
                     )),
                 Container(
-                    margin: const EdgeInsets.only(left: 230),
+                    margin: const EdgeInsets.only(left: 130),
                     height: 50,
                     width: 300,
                     alignment: Alignment.center,
@@ -248,7 +261,66 @@ class _BookingDetailsState extends State<BookingDetails> {
                           side: const BorderSide(color: Colors.white54)),
                     ),
                   ),
-                  onPressed: () {},
+                  onPressed: () async {
+                    if (First_Name.text == "" ||
+                        Last_Name.text == "" ||
+                        email.text == "" ||
+                        Contact_No.text == "") {
+                      Fluttertoast.showToast(
+                        msg: "All fields cannot be blank!",
+                        toastLength: Toast.LENGTH_SHORT,
+                        timeInSecForIosWeb: 2,
+                        textColor: Colors.white,
+                        fontSize: 16.0,
+                      );
+                    } else {
+                      final response = await http.post(
+                        Uri.parse('http://localhost:5000/api/bookingDetails'),
+                        body: json.encode({
+                          "First_Name": First_Name.text,
+                          "Last_Name": Last_Name.text,
+                          "Contact_No": Contact_No.text,
+                          "email": email.text,
+                        }),
+                        headers: {
+                          "Content-Type": "application/json",
+                        },
+                      );
+                      var data = json.decode(response.body);
+                      if (response.statusCode == 200) {
+                        print('${response.body}');
+                        passengerid = data['passenger_ID'];
+                        Widget _buildPopupDialog(BuildContext context) {
+                          return AlertDialog(
+                            title: const Text(
+                                'Following is your Passenger ID. Please get your ticket details from ticket viewer page'),
+                            content: Column(
+                              mainAxisSize: MainAxisSize.min,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text("Booking ID: $passengerid"),
+                              ],
+                            ),
+                            actions: <Widget>[
+                              ElevatedButton(
+                                onPressed: () {
+                                  Navigator.of(context).pop();
+                                },
+                                child: const Text('Close'),
+                              ),
+                            ],
+                          );
+                        }
+
+                        showDialog(
+                          context: context,
+                          builder: (BuildContext context) => _buildPopupDialog(context),
+                        );
+                      } else {
+                        print('Request failed with status: ${response.statusCode}');
+                      }
+                    }
+                  },
                   child: Text(
                     'BOOK TICKET',
                     style: GoogleFonts.lato(

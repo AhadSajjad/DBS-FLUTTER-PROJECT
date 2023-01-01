@@ -25,6 +25,21 @@ app.listen(process.env.PORT || port, () => {
     console.log(`Server up and running at port ${port}`);
 })
 
+let idsGenerator = {
+
+    pass_ID : 29,
+    book_ID : 29,
+    seat : 30,
+
+}
+function between(min, max) {  
+    return Math.floor(
+      Math.random() * (max - min) + min
+    )
+  }
+datevar = between(1,31)
+coachvar = between(1,3)
+
 
 app.post("/api/login", (req, res) => {
     //res.statusCode = 200;
@@ -60,8 +75,8 @@ app.post("/api/login", (req, res) => {
 
 app.post("/api/checkBooking", (req, res) => {
     //db say users
-    const { booking_ID } = req.body
-    let loginQuery = `SELECT Passenger_ID,First_Name,Last_Name,Booking_ID,email,Contact_No,Booking_Date,Seat_No,Coach_No,Price,Train_ID_ FROM passenger,booking WHERE passenger.Booking_ID_ = booking.Booking_ID and booking.Booking_ID = "${booking_ID}"`
+    const { PassengersID } = req.body
+    let loginQuery = `SELECT Passenger_ID,First_Name,Last_Name,Booking_ID,email,Contact_No,Booking_Date,Seat_No,Coach_No,Price,Train_ID_ FROM passenger,booking WHERE passenger.Passenger_ID = booking.Passenger_ID_ and passenger.Passenger_ID = "${PassengersID}"`
     console.log("Body: ", req.body);
     dbConnection.query(loginQuery, (err, result) => {
         if (err) {
@@ -91,14 +106,22 @@ app.post("/api/checkBooking", (req, res) => {
 app.get("/api/path2", (req, res) => {
     // login
 })
-app.put("/api/bookingDetails", (req, res) => {
+app.post("/api/bookingDetails", (req, res) => {
 
     //db say users
-    const { First_name,Last_name,Contact_No } = req.body
-    let loginQuery = `insert into passenger(First_Name,Last_Name,Contact_No,email)
-    values("${booking_ID}","${booking_ID}","${booking_ID}","${booking_ID}","${booking_ID}") `
+    const passenger_ID = idsGenerator['pass_ID']
+    const Booking_ID = idsGenerator['book_ID']
+    const seat_No = idsGenerator['seat']
+    idsGenerator['pass_ID']++
+    idsGenerator['book_ID']++
+    idsGenerator['seat']++
+    const { First_name,Last_name,Contact_No, email } = req.body
+    let insertPassenger = ` insert into passenger(Passenger_ID,First_Name,Last_Name,Contact_No,email)
+    values("${passenger_ID}","${First_name}","${Last_name}",${Contact_No},"${email}")`
+    let insertBooking = `insert into booking(Booking_ID, Booking_Date, Seat_No, Coach_No, Price, Train_ID_, Passenger_ID_)
+    values("B0${Booking_ID}","2023-01-${datevar}",${seat_No},"C${coachvar}","${coachvar}000","T00${coachvar}","${passenger_ID}");`
     console.log("Body: ", req.body);
-    dbConnection.query(loginQuery, (err, result) => {
+    dbConnection.query(insertPassenger, (err, result) => {
         if (err) {
             res.send({
                 status: false,
@@ -106,12 +129,22 @@ app.put("/api/bookingDetails", (req, res) => {
                 data: err.code
             });
         };
+        dbConnection.query(insertBooking, (err, result) =>{
+            if (err) {
+                res.send({
+                    status: false,
+                    error: err.errno,
+                    data: err.code
+                });
+            };
+        });
         console.log(result)
         // const {First_Name, Username} = result[0]
         if (req.body) {
             res.send({
                 status: true,
-                data: result
+                data: result,
+                booking: passenger_ID,
             });
         }
         else {
