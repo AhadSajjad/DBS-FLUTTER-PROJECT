@@ -16,17 +16,17 @@ class NewBookingPage extends StatefulWidget {
 class _NewBookingPageState extends State<NewBookingPage> {
   @override
   Widget build(BuildContext context) {
-    final List<String> items = [
-      'A_Item1',
-      'A_Item2',
-      'A_Item3',
-      'A_Item4',
-      'B_Item1',
-      'B_Item2',
-      'B_Item3',
-      'B_Item4',
-    ];
-    String? selectedValue;
+    // final List<String> items = [
+    //   'A_Item1',
+    //   'A_Item2',
+    //   'A_Item3',
+    //   'A_Item4',
+    //   'B_Item1',
+    //   'B_Item2',
+    //   'B_Item3',
+    //   'B_Item4',
+    // ];
+    // String? selectedValue;
     final TextEditingController textEditingController = TextEditingController();
     @override
     void dispose() {
@@ -59,9 +59,9 @@ class _NewBookingPageState extends State<NewBookingPage> {
               children: [
                 const SizedBox(height: 20),
                 Text('BOOK YOUR TICKET!',
-                    style: GoogleFonts.acme(
+                    style: GoogleFonts.alegreyaSansSc(
                         textStyle: TextStyle(
-                      fontSize: 30,
+                      fontSize: 30, fontWeight: FontWeight.w700,
                       color: Colors.white,
                     ))),
                 SizedBox(
@@ -72,191 +72,190 @@ class _NewBookingPageState extends State<NewBookingPage> {
                     crossAxisAlignment: CrossAxisAlignment.center,
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      DropdownButtonHideUnderline(
-                        child: DropdownButton2(
-                          isExpanded: true,
-                          hint: Text(
-                            'FROM',
-                            style: GoogleFonts.lato(textStyle: TextStyle(
-                              fontSize: 16,
-                              color: Colors.white,
-                            ),)
-                          ),
-                          items: items
-                              .map((item) => DropdownMenuItem<String>(
-                                    value: item,
-                                    child: Text(
-                                      item,
-                                      style: const TextStyle(
-                                        fontSize: 14,
-                                      ),
-                                    ),
-                                  ))
-                              .toList(),
-                          value: selectedValue,
-                          onChanged: (value) {
-                            setState(() {
-                              selectedValue = value as String;
-                            });
-                          },
-                          buttonHeight: 40,
-                          buttonWidth: 120,
-                          itemHeight: 40,
-                          dropdownMaxHeight: 200,
-                          searchController: textEditingController,
-                          searchInnerWidget: Padding(
-                            padding: const EdgeInsets.only(
-                              top: 8,
-                              bottom: 4,
-                              right: 8,
-                              left: 8,
-                            ),
-                            child: TextFormField(
-                              controller: textEditingController,
-                              decoration: InputDecoration(
-                                isDense: true,
-                                contentPadding: const EdgeInsets.symmetric(
-                                  horizontal: 10,
-                                  vertical: 8,
-                                ),
-                                hintText: 'Search',
-                                hintStyle: const TextStyle(fontSize: 12),
-                                border: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(20),
-                                ),
-                              ),
-                            ),
-                          ),
-                          searchMatchFn: (item, searchValue) {
-                            return (item.value
-                                .toString()
-                                .contains(searchValue));
-                          },
-                          //This to clear the search value when you close the menu
-                          onMenuStateChange: (isOpen) {
-                            if (!isOpen) {
-                              textEditingController.clear();
-                            }
-                          },
-                        ),
-                      ),
-                      SizedBox(
-                        width: 30,
-                      ),
-                      DropdownButtonHideUnderline(
-                        child: DropdownButton2(
-                          isExpanded: true,
-                          hint: Text(
-                            'TO',
-                            style: GoogleFonts.lato(textStyle: TextStyle(
-                              fontSize: 16,
-                              color: Colors.white,
-                            ),),
-                          ),
-                          items: items
-                              .map((item) => DropdownMenuItem<String>(
-                                    value: item,
-                                    child: Text(
-                                      item,
-                                      style: const TextStyle(
-                                        fontSize: 14,
-                                      ),
-                                    ),
-                                  ))
-                              .toList(),
-                          value: selectedValue,
-                          onChanged: (value) {
-                            setState(() {
-                              selectedValue = value as String;
-                            });
-                          },
-                          buttonHeight: 40,
-                          buttonWidth: 120,
-                          itemHeight: 40,
-                          dropdownMaxHeight: 200,
-                          searchController: textEditingController,
-                          searchInnerWidget: Padding(
-                            padding: const EdgeInsets.only(
-                              top: 8,
-                              bottom: 4,
-                              right: 8,
-                              left: 8,
-                            ),
-                            child: TextFormField(
-                              controller: textEditingController,
-                              decoration: InputDecoration(
-                                isDense: true,
-                                contentPadding: const EdgeInsets.symmetric(
-                                  horizontal: 10,
-                                  vertical: 8,
-                                ),
-                                hintText: 'Search',
-                                hintStyle: const TextStyle(fontSize: 12),
-                                border: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(20),
-                                ),
-                              ),
-                            ),
-                          ),
-                          searchMatchFn: (item, searchValue) {
-                            return (item.value
-                                .toString()
-                                .contains(searchValue));
-                          },
-                          //This to clear the search value when you close the menu
-                          onMenuStateChange: (isOpen) {
-                            if (!isOpen) {
-                              textEditingController.clear();
-                            }
-                          },
-                        ),
-                      ),
+                      // DropdownButtonHideUnderline(
+                      //   child: DropdownButton2(
+                      //     isExpanded: true,
+                      //     hint: Text(
+                      //       'FROM',
+                      //       style: GoogleFonts.lato(textStyle: TextStyle(
+                      //         fontSize: 16,
+                      //         color: Colors.white,
+                      //       ),)
+                      //     ),
+                      //     items: items
+                      //         .map((item) => DropdownMenuItem<String>(
+                      //               value: item,
+                      //               child: Text(
+                      //                 item,
+                      //                 style: const TextStyle(
+                      //                   fontSize: 14,
+                      //                 ),
+                      //               ),
+                      //             ))
+                      //         .toList(),
+                      //     value: selectedValue,
+                      //     onChanged: (value) {
+                      //       setState(() {
+                      //         selectedValue = value as String;
+                      //       });
+                      //     },
+                      //     buttonHeight: 40,
+                      //     buttonWidth: 120,
+                      //     itemHeight: 40,
+                      //     dropdownMaxHeight: 200,
+                      //     searchController: textEditingController,
+                      //     searchInnerWidget: Padding(
+                      //       padding: const EdgeInsets.only(
+                      //         top: 8,
+                      //         bottom: 4,
+                      //         right: 8,
+                      //         left: 8,
+                      //       ),
+                      //       child: TextFormField(
+                      //         controller: textEditingController,
+                      //         decoration: InputDecoration(
+                      //           isDense: true,
+                      //           contentPadding: const EdgeInsets.symmetric(
+                      //             horizontal: 10,
+                      //             vertical: 8,
+                      //           ),
+                      //           hintText: 'Search',
+                      //           hintStyle: const TextStyle(fontSize: 12),
+                      //           border: OutlineInputBorder(
+                      //             borderRadius: BorderRadius.circular(20),
+                      //           ),
+                      //         ),
+                      //       ),
+                      //     ),
+                      //     searchMatchFn: (item, searchValue) {
+                      //       return (item.value
+                      //           .toString()
+                      //           .contains(searchValue));
+                      //     },
+                      //     //This to clear the search value when you close the menu
+                      //     onMenuStateChange: (isOpen) {
+                      //       if (!isOpen) {
+                      //         textEditingController.clear();
+                      //       }
+                      //     },
+                      //   ),
+                      // ),
+                      // SizedBox(
+                      //   width: 30,
+                      // ),
+                      // DropdownButtonHideUnderline(
+                      //   child: DropdownButton2(
+                      //     isExpanded: true,
+                      //     hint: Text(
+                      //       'TO',
+                      //       style: GoogleFonts.lato(textStyle: TextStyle(
+                      //         fontSize: 16,
+                      //         color: Colors.white,
+                      //       ),),
+                      //     ),
+                      //     items: items
+                      //         .map((item) => DropdownMenuItem<String>(
+                      //               value: item,
+                      //               child: Text(
+                      //                 item,
+                      //                 style: const TextStyle(
+                      //                   fontSize: 14,
+                      //                 ),
+                      //               ),
+                      //             ))
+                      //         .toList(),
+                      //     value: selectedValue,
+                      //     onChanged: (value) {
+                      //       setState(() {
+                      //         selectedValue = value as String;
+                      //       });
+                      //     },
+                      //     buttonHeight: 40,
+                      //     buttonWidth: 120,
+                      //     itemHeight: 40,
+                      //     dropdownMaxHeight: 200,
+                      //     searchController: textEditingController,
+                      //     searchInnerWidget: Padding(
+                      //       padding: const EdgeInsets.only(
+                      //         top: 8,
+                      //         bottom: 4,
+                      //         right: 8,
+                      //         left: 8,
+                      //       ),
+                      //       child: TextFormField(
+                      //         controller: textEditingController,
+                      //         decoration: InputDecoration(
+                      //           isDense: true,
+                      //           contentPadding: const EdgeInsets.symmetric(
+                      //             horizontal: 10,
+                      //             vertical: 8,
+                      //           ),
+                      //           hintText: 'Search',
+                      //           hintStyle: const TextStyle(fontSize: 12),
+                      //           border: OutlineInputBorder(
+                      //             borderRadius: BorderRadius.circular(20),
+                      //           ),
+                      //         ),
+                      //       ),
+                      //     ),
+                      //     searchMatchFn: (item, searchValue) {
+                      //       return (item.value
+                      //           .toString()
+                      //           .contains(searchValue));
+                      //     },
+                      //     //This to clear the search value when you close the menu
+                      //     onMenuStateChange: (isOpen) {
+                      //       if (!isOpen) {
+                      //         textEditingController.clear();
+                      //       }
+                      //     },
+                      //   ),
+                      // ),
                       SizedBox(
                         width: 20,
                       ),
-                      ElevatedButton(
-                          style: ButtonStyle(
-                            overlayColor: MaterialStateProperty.resolveWith<Color?>(
-                                    (Set<MaterialState> states) {
-                                  if (states.contains(MaterialState.pressed)) {
-                                    return Colors.white;
-                                  } //<-- SEE HERE
-                                  return null;
-                                }),
-                            backgroundColor:
-                            MaterialStateProperty.all(Color(0xFF4A305D)),
-                            shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                              RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(18.0),
-                                  side: const BorderSide(color: Colors.white)),
-                            ),
-                          ),
-                          onPressed: () {
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) =>
-                                    const BookingDetails()));
-                          },
-                          child: Text(
-                            'GO!',
-                              style: GoogleFonts.lato(textStyle:TextStyle(
-                                  fontSize: 14,
-                                  color: Colors.white))
-                          )
-                      ),
+                      // ElevatedButton(
+                      //     style: ButtonStyle(
+                      //       overlayColor: MaterialStateProperty.resolveWith<Color?>(
+                      //               (Set<MaterialState> states) {
+                      //             if (states.contains(MaterialState.pressed)) {
+                      //               return Colors.white;
+                      //             } //<-- SEE HERE
+                      //             return null;
+                      //           }),
+                      //       backgroundColor:
+                      //       MaterialStateProperty.all(Color(0xFF4A305D)),
+                      //       shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                      //         RoundedRectangleBorder(
+                      //             borderRadius: BorderRadius.circular(18.0),
+                      //             side: const BorderSide(color: Colors.white)),
+                      //       ),
+                      //     ),
+                      //     onPressed: () {
+                      //       Navigator.push(
+                      //           context,
+                      //           MaterialPageRoute(
+                      //               builder: (context) =>
+                      //               const BookingDetails()));
+                      //     },
+                      //     child: Text(
+                      //       'GO!',
+                      //         style: GoogleFonts.lato(textStyle:TextStyle(
+                      //             fontSize: 14,
+                      //             color: Colors.white))
+                      //     )
+                      // ),
                     ],
                   ),
                 ),
-                const SizedBox(height: 30),
                 Text("POPULAR DESTINATIONS",
-                    style: GoogleFonts.acme(
+                    style: GoogleFonts.alegreyaSansSc(
                         textStyle: TextStyle(
-                      fontSize: 30,
+                      fontSize: 30, fontWeight: FontWeight.w700,
                       color: Colors.white,
                     ))),
                 SizedBox(
-                  height: 20,
+                  height: 40,
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,

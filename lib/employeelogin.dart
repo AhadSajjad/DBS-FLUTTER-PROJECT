@@ -366,7 +366,7 @@ class _EmployeePageState extends State<EmployeePage> {
                               MaterialPageRoute(
                                   builder: (context) => const HomePage()));
                         },
-                        child: Text('BACK!',
+                        child: Text('LOGOUT!',
                             style: GoogleFonts.lato(
                                 textStyle: TextStyle(
                                     fontSize: 14, color: Colors.white)))),
