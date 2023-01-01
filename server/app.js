@@ -91,8 +91,36 @@ app.post("/api/checkBooking", (req, res) => {
 app.get("/api/path2", (req, res) => {
     // login
 })
-app.put("/api/path3", (req, res) => {
+app.put("/api/bookingDetails", (req, res) => {
 
+    //db say users
+    const { First_name,Last_name,Contact_No } = req.body
+    let loginQuery = `insert into passenger(First_Name,Last_Name,Contact_No,email)
+    values("${booking_ID}","${booking_ID}","${booking_ID}","${booking_ID}","${booking_ID}") `
+    console.log("Body: ", req.body);
+    dbConnection.query(loginQuery, (err, result) => {
+        if (err) {
+            res.send({
+                status: false,
+                error: err.errno,
+                data: err.code
+            });
+        };
+        console.log(result)
+        // const {First_Name, Username} = result[0]
+        if (req.body) {
+            res.send({
+                status: true,
+                data: result
+            });
+        }
+        else {
+            res.send({
+                status: false,
+                data: "data entry failed!"
+            });
+        }
+    })
 })
 app.delete("/api/path4", (req, res) => {
 
