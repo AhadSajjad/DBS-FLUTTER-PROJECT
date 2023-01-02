@@ -332,7 +332,6 @@ class _BookingDetailsState extends State<BookingDetails> {
                             ],
                           );
                         }
-
                         showDialog(
                           context: context,
                           builder: (BuildContext context) => _buildPopupDialog(context),

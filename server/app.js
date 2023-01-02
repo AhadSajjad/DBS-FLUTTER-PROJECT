@@ -27,9 +27,9 @@ app.listen(process.env.PORT || port, () => {
 
 let idsGenerator = {
 
-    pass_ID: 39,
-    book_ID: 39,
-    seat: 39,
+    pass_ID: 44,
+    book_ID: 44,
+    seat: 44,
 
 }
 function between(min, max) {
@@ -39,7 +39,11 @@ function between(min, max) {
 }
 datevar = between(1, 31)
 coachvar = between(1, 3)
+secondcoachvar = between(1, 3)
+thirdcoachvar = between(1, 3)
+fourthcoachvar = between(1, 3)
 
+let pathRoute = "0";
 
 app.post("/api/login", (req, res) => {
     //res.statusCode = 200;
@@ -116,10 +120,12 @@ app.post("/api/bookingDetails", (req, res) => {
     idsGenerator['book_ID']++
     idsGenerator['seat']++
     const { First_Name, Last_Name, Contact_No, email } = req.body
-    let insertPassenger = ` insert into passenger(Passenger_ID,First_Name,Last_Name,Contact_No,email)
+    if(pathRoute==1 || pathRoute==3 || pathRoute==5 || pathRoute==7)
+    {
+        let insertPassenger = ` insert into passenger(Passenger_ID,First_Name,Last_Name,Contact_No,email)
     values("${passenger_ID}","${First_Name}","${Last_Name}",${Contact_No},"${email}")`
     let insertBooking = `insert into booking(Booking_ID, Booking_Date, Seat_No, Coach_No, Price, Train_ID_, Passenger_ID_)
-    values("B0${Booking_ID}","2023-01-${datevar}",${seat_No},"C${coachvar}","${coachvar}000","T00${coachvar}","${passenger_ID}");`
+    values("B0${Booking_ID}","2023-01-${datevar}",${seat_No},"C${coachvar}","${secondcoachvar}000","T00${coachvar}","${passenger_ID}");`
     console.log("Body: ", req.body);
     dbConnection.query(insertPassenger, (err, result) => {
         if (err) {
@@ -154,6 +160,131 @@ app.post("/api/bookingDetails", (req, res) => {
             });
         }
     })
+    }
+    else if(pathRoute==2 || pathRoute==4 || pathRoute==9)
+    {
+        let insertPassenger = ` insert into passenger(Passenger_ID,First_Name,Last_Name,Contact_No,email)
+    values("${passenger_ID}","${First_Name}","${Last_Name}",${Contact_No},"${email}")`
+    let insertBooking = `insert into booking(Booking_ID, Booking_Date, Seat_No, Coach_No, Price, Train_ID_, Passenger_ID_)
+    values("B0${Booking_ID}","2023-01-${datevar}",${seat_No},"C${coachvar}","${coachvar}000","T00${coachvar},T00${secondcoachvar}","${passenger_ID}");`
+    console.log("Body: ", req.body);
+    dbConnection.query(insertPassenger, (err, result) => {
+        if (err) {
+            res.send({
+                status: false,
+                error: err.errno,
+                data: err.code
+            });
+        };
+        dbConnection.query(insertBooking, (err, result) => {
+            if (err) {
+                res.send({
+                    status: false,
+                    error: err.errno,
+                    data: err.code
+                });
+            };
+        });
+        console.log(result)
+        // const {First_Name, Username} = result[0]
+        if (req.body) {
+            res.send({
+                status: true,
+                data: result,
+                passenger: passenger_ID,
+            });
+        }
+        else {
+            res.send({
+                status: false,
+                data: "data entry failed!"
+            });
+        }
+    })
+    }
+    else if(pathRoute==6)
+    {
+        let insertPassenger = ` insert into passenger(Passenger_ID,First_Name,Last_Name,Contact_No,email)
+    values("${passenger_ID}","${First_Name}","${Last_Name}",${Contact_No},"${email}")`
+    let insertBooking = `insert into booking(Booking_ID, Booking_Date, Seat_No, Coach_No, Price, Train_ID_, Passenger_ID_)
+    values("B0${Booking_ID}","2023-01-${datevar}",${seat_No},"C${coachvar}","${coachvar}000","T00${coachvar},T00${secondcoachvar},T00${thirdcoachvar}","${passenger_ID}");`
+    console.log("Body: ", req.body);
+    dbConnection.query(insertPassenger, (err, result) => {
+        if (err) {
+            res.send({
+                status: false,
+                error: err.errno,
+                data: err.code
+            });
+        };
+        dbConnection.query(insertBooking, (err, result) => {
+            if (err) {
+                res.send({
+                    status: false,
+                    error: err.errno,
+                    data: err.code
+                });
+            };
+        });
+        console.log(result)
+        // const {First_Name, Username} = result[0]
+        if (req.body) {
+            res.send({
+                status: true,
+                data: result,
+                passenger: passenger_ID,
+            });
+        }
+        else {
+            res.send({
+                status: false,
+                data: "data entry failed!"
+            });
+        }
+    })
+    }
+    else if(pathRoute==8)
+    {
+        let insertPassenger = ` insert into passenger(Passenger_ID,First_Name,Last_Name,Contact_No,email)
+    values("${passenger_ID}","${First_Name}","${Last_Name}",${Contact_No},"${email}")`
+    let insertBooking = `insert into booking(Booking_ID, Booking_Date, Seat_No, Coach_No, Price, Train_ID_, Passenger_ID_)
+    values("B0${Booking_ID}","2023-01-${datevar}",${seat_No},"C${coachvar}","${coachvar}000","T00${coachvar},T00${secondcoachvar},T00${thirdcoachvar},T00${fourthcoachvar}","${passenger_ID}");`
+    console.log("Body: ", req.body);
+    dbConnection.query(insertPassenger, (err, result) => {
+        if (err) {
+            res.send({
+                status: false,
+                error: err.errno,
+                data: err.code
+            });
+        };
+        dbConnection.query(insertBooking, (err, result) => {
+            if (err) {
+                res.send({
+                    status: false,
+                    error: err.errno,
+                    data: err.code
+                });
+            };
+        });
+        console.log(result)
+        // const {First_Name, Username} = result[0]
+        if (req.body) {
+            res.send({
+                status: true,
+                data: result,
+                passenger: passenger_ID,
+            });
+        }
+        else {
+            res.send({
+                status: false,
+                data: "data entry failed!"
+            });
+        }
+    })
+    }
+    
 })
 app.get("/api/T001", (req, res) => {
     //res.statusCode = 200;
@@ -193,9 +324,9 @@ app.get("/api/T002", (req, res) => {
     // res.status = 200;
     // res.json = {l:"Login Successful"};
     //    const { username, password } = req.body
-    let T001Query = `SELECT track_ID, Source_Station,destination_station,Time_in,Time_Out,Sequence_Number from tracks, train, train_schedule where tracks.Track_ID=train_schedule.Track_ID_ and train.Train_ID="T002";`
+    let T002Query = `SELECT track_ID, Source_Station,destination_station,Time_in,Time_Out,Sequence_Number from tracks, train, train_schedule where tracks.Track_ID=train_schedule.Track_ID_ and train.Train_ID="T002";`
     //  console.log("Body: ", req.body);
-    dbConnection.query(T001Query, (err, result) => {
+    dbConnection.query(T002Query, (err, result) => {
         if (err) {
             res.send({
                 status: false,
@@ -226,9 +357,9 @@ app.get("/api/T003", (req, res) => {
     // res.status = 200;
     // res.json = {l:"Login Successful"};
     //    const { username, password } = req.body
-    let T001Query = `SELECT track_ID, Source_Station,destination_station,Time_in,Time_Out,Sequence_Number from tracks, train, train_schedule where tracks.Track_ID=train_schedule.Track_ID_ and train.Train_ID="T003";`
+    let T003Query = `SELECT track_ID, Source_Station,destination_station,Time_in,Time_Out,Sequence_Number from tracks, train, train_schedule where tracks.Track_ID=train_schedule.Track_ID_ and train.Train_ID="T003";`
     //  console.log("Body: ", req.body);
-    dbConnection.query(T001Query, (err, result) => {
+    dbConnection.query(T003Query, (err, result) => {
         if (err) {
             res.send({
                 status: false,
@@ -250,8 +381,16 @@ app.get("/api/T003", (req, res) => {
             });
         }
     })
+})
 
-
+app.get("/api/getPath/:id", (req, res) => {
+    console.log(req.params);
+    const path = req.params.id;
+    pathRoute = req.params['id'];
+    res.send({
+        status: true,
+    });
+    console.log(pathRoute)
 })
 
 

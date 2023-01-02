@@ -1,10 +1,12 @@
+import 'dart:convert';
+import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import "package:onboarding/onboarding.dart";
-import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'bookingDetails.dart';
-import 'package:mysql1/mysql1.dart';
 
+var path;
 
 class NewBookingPage extends StatefulWidget {
   const NewBookingPage({Key? key}) : super(key: key);
@@ -14,6 +16,25 @@ class NewBookingPage extends StatefulWidget {
 }
 
 class _NewBookingPageState extends State<NewBookingPage> {
+
+  Future pathProvider() async {
+    var name = {"path":'$path'};
+    print(name);
+    final response = await http.get(
+      Uri.parse('http://localhost:5000/api/getPath/$path'),
+      // body: name,
+      headers: {
+        "Content-Type": "application/json",
+      },
+    );
+    if (json.decode(response.body)['status'] == true) {
+      print('${response.body}');
+      print(path);
+    } else {
+      print('Request failed with status: ${response.statusCode}');
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     // final List<String> items = [
@@ -61,7 +82,8 @@ class _NewBookingPageState extends State<NewBookingPage> {
                 Text('BOOK YOUR TICKET!',
                     style: GoogleFonts.alegreyaSansSc(
                         textStyle: TextStyle(
-                      fontSize: 30, fontWeight: FontWeight.w700,
+                      fontSize: 30,
+                      fontWeight: FontWeight.w700,
                       color: Colors.white,
                     ))),
                 SizedBox(
@@ -251,7 +273,8 @@ class _NewBookingPageState extends State<NewBookingPage> {
                 Text("POPULAR DESTINATIONS",
                     style: GoogleFonts.alegreyaSansSc(
                         textStyle: TextStyle(
-                      fontSize: 30, fontWeight: FontWeight.w700,
+                      fontSize: 30,
+                      fontWeight: FontWeight.w700,
                       color: Colors.white,
                     ))),
                 SizedBox(
@@ -268,20 +291,22 @@ class _NewBookingPageState extends State<NewBookingPage> {
                         // child: Padding(
                         //     padding: EdgeInsets.only(top: 100),
                         child: Column(children: [
-                            Container(
-                            height: 170, width: 290,
-                              decoration: BoxDecoration(
-                                //color: Colors.teal,
-                                border: Border.all(
-                                  color: Color(0xFF4A305D),
-                                  width: 1.5,
-                                ),
-                                  borderRadius: BorderRadius.circular(20),
+                          Container(
+                            height: 170,
+                            width: 290,
+                            decoration: BoxDecoration(
+                              //color: Colors.teal,
+                              border: Border.all(
+                                color: Color(0xFF4A305D),
+                                width: 1.5,
                               ),
+                              borderRadius: BorderRadius.circular(20),
+                            ),
                             child: ClipRRect(
                               borderRadius: BorderRadius.circular(20),
                               child: Image.asset('Karachi.jpg'),
-                            ),),
+                            ),
+                          ),
                           SizedBox(
                             height: 10,
                           ),
@@ -301,15 +326,18 @@ class _NewBookingPageState extends State<NewBookingPage> {
                                   borderRadius: BorderRadius.circular(10),
                                 ),
                                 //color: Colors.white,
-                               // child: Padding(
-                               //   padding:
-                                 //     const EdgeInsets.only(left: 9.0, top: 4.0),
-                                  child: Text('From:',
-                                      style: GoogleFonts.josefinSans(textStyle: TextStyle(
-                                        fontSize: 16,
-                                        color: Colors.white,
-                                      )),),
-                              //  ),
+                                // child: Padding(
+                                //   padding:
+                                //     const EdgeInsets.only(left: 9.0, top: 4.0),
+                                child: Text(
+                                  'From:',
+                                  style: GoogleFonts.josefinSans(
+                                      textStyle: TextStyle(
+                                    fontSize: 16,
+                                    color: Colors.white,
+                                  )),
+                                ),
+                                //  ),
                               ),
                             ),
                           ),
@@ -325,34 +353,35 @@ class _NewBookingPageState extends State<NewBookingPage> {
                                               (Set<MaterialState> states) {
                                         if (states
                                             .contains(MaterialState.pressed))
-                                          return Colors
-                                              .white70; //<-- SEE HERE
+                                          return Colors.white70; //<-- SEE HERE
                                         return null;
                                       }),
                                       backgroundColor:
-                                          MaterialStateProperty.all(Color(0xFF4A305D)),
+                                          MaterialStateProperty.all(
+                                              Color(0xFF4A305D)),
                                       shape: MaterialStateProperty.all<
                                           RoundedRectangleBorder>(
                                         RoundedRectangleBorder(
                                             borderRadius:
                                                 BorderRadius.circular(18.0),
-                                            side:
-                                                BorderSide(color: Colors.white)),
+                                            side: BorderSide(
+                                                color: Colors.white)),
                                       ),
                                     ),
                                     onPressed: () {
+                                      path = 1;
+                                      pathProvider();
                                       Navigator.push(
                                           context,
                                           MaterialPageRoute(
                                               builder: (context) =>
-                                              const BookingDetails()));
+                                                  const BookingDetails()));
                                     },
-                                    child: Text(
-                                      'ISLAMABAD',
-                                      style: GoogleFonts.josefinSans(textStyle:TextStyle(
-                                          fontSize: 14,
-                                          color: Colors.white))
-                                    )),
+                                    child: Text('ISLAMABAD',
+                                        style: GoogleFonts.josefinSans(
+                                            textStyle: TextStyle(
+                                                fontSize: 14,
+                                                color: Colors.white)))),
                               )),
                           Container(
                               width: 120,
@@ -366,34 +395,35 @@ class _NewBookingPageState extends State<NewBookingPage> {
                                               (Set<MaterialState> states) {
                                         if (states
                                             .contains(MaterialState.pressed))
-                                          return Colors
-                                              .white70; //<-- SEE HERE
+                                          return Colors.white70; //<-- SEE HERE
                                         return null;
                                       }),
                                       backgroundColor:
-                                          MaterialStateProperty.all(Color(0xFF4A305D)),
+                                          MaterialStateProperty.all(
+                                              Color(0xFF4A305D)),
                                       shape: MaterialStateProperty.all<
                                           RoundedRectangleBorder>(
                                         RoundedRectangleBorder(
                                             borderRadius:
                                                 BorderRadius.circular(18.0),
-                                            side:
-                                                BorderSide(color: Colors.white)),
+                                            side: BorderSide(
+                                                color: Colors.white)),
                                       ),
                                     ),
                                     onPressed: () {
+                                      path = 2;
+                                      pathProvider();
                                       Navigator.push(
                                           context,
                                           MaterialPageRoute(
                                               builder: (context) =>
-                                              const BookingDetails()));
+                                                  const BookingDetails()));
                                     },
-                                    child: Text(
-                                      'LAHORE',
-                                        style: GoogleFonts.josefinSans(textStyle:TextStyle(
-                                            fontSize: 14,
-                                            color: Colors.white))
-                                    )),
+                                    child: Text('LAHORE',
+                                        style: GoogleFonts.josefinSans(
+                                            textStyle: TextStyle(
+                                                fontSize: 14,
+                                                color: Colors.white)))),
                               )),
                           Container(
                               width: 120,
@@ -402,11 +432,13 @@ class _NewBookingPageState extends State<NewBookingPage> {
                                 padding: const EdgeInsets.only(top: 10.0),
                                 child: ElevatedButton(
                                     onPressed: () {
+                                      path = 3;
+                                      pathProvider();
                                       Navigator.push(
                                           context,
                                           MaterialPageRoute(
                                               builder: (context) =>
-                                              const BookingDetails()));
+                                                  const BookingDetails()));
                                     },
                                     style: ButtonStyle(
                                       overlayColor: MaterialStateProperty
@@ -414,27 +446,26 @@ class _NewBookingPageState extends State<NewBookingPage> {
                                               (Set<MaterialState> states) {
                                         if (states
                                             .contains(MaterialState.pressed))
-                                          return Colors
-                                              .white70; //<-- SEE HERE
+                                          return Colors.white70; //<-- SEE HERE
                                         return null;
                                       }),
                                       backgroundColor:
-                                          MaterialStateProperty.all(Color(0xFF4A305D)),
+                                          MaterialStateProperty.all(
+                                              Color(0xFF4A305D)),
                                       shape: MaterialStateProperty.all<
                                           RoundedRectangleBorder>(
                                         RoundedRectangleBorder(
                                             borderRadius:
                                                 BorderRadius.circular(18.0),
-                                            side:
-                                                BorderSide(color: Colors.white)),
+                                            side: BorderSide(
+                                                color: Colors.white)),
                                       ),
                                     ),
-                                    child: Text(
-                                      'MULTAN',
-                                        style: GoogleFonts.josefinSans(textStyle:TextStyle(
-                                            fontSize: 14,
-                                            color: Colors.white))
-                                    )),
+                                    child: Text('MULTAN',
+                                        style: GoogleFonts.josefinSans(
+                                            textStyle: TextStyle(
+                                                fontSize: 14,
+                                                color: Colors.white)))),
                               ))
                         ])),
                     Container(
@@ -445,7 +476,8 @@ class _NewBookingPageState extends State<NewBookingPage> {
                         //     padding: EdgeInsets.only(top: 100),
                         child: Column(children: [
                           Container(
-                            height: 170, width: 290,
+                            height: 170,
+                            width: 290,
                             decoration: BoxDecoration(
                               //color: Colors.teal,
                               border: Border.all(
@@ -457,7 +489,8 @@ class _NewBookingPageState extends State<NewBookingPage> {
                             child: ClipRRect(
                               borderRadius: BorderRadius.circular(20),
                               child: Image.asset('Lahore.jpg'),
-                            ),),
+                            ),
+                          ),
                           SizedBox(
                             height: 10,
                           ),
@@ -477,15 +510,18 @@ class _NewBookingPageState extends State<NewBookingPage> {
                                   borderRadius: BorderRadius.circular(10),
                                 ),
                                 //color: Colors.white,
-                              //  child: Padding(
-                                  //padding:
-                                      //const EdgeInsets.only(left: 9.0, top: 4.0),
-                                  child: Text('From:',
-                                      style: GoogleFonts.josefinSans(textStyle: TextStyle(
-                                        fontSize: 16,
-                                        color: Colors.white,
-                                      )),),
+                                //  child: Padding(
+                                //padding:
+                                //const EdgeInsets.only(left: 9.0, top: 4.0),
+                                child: Text(
+                                  'From:',
+                                  style: GoogleFonts.josefinSans(
+                                      textStyle: TextStyle(
+                                    fontSize: 16,
+                                    color: Colors.white,
+                                  )),
                                 ),
+                              ),
                               //),
                             ),
                           ),
@@ -501,34 +537,35 @@ class _NewBookingPageState extends State<NewBookingPage> {
                                               (Set<MaterialState> states) {
                                         if (states
                                             .contains(MaterialState.pressed))
-                                          return Colors
-                                              .white70; //<-- SEE HERE
+                                          return Colors.white70; //<-- SEE HERE
                                         return null;
                                       }),
                                       backgroundColor:
-                                          MaterialStateProperty.all(Color(0xFF4A305D)),
+                                          MaterialStateProperty.all(
+                                              Color(0xFF4A305D)),
                                       shape: MaterialStateProperty.all<
                                           RoundedRectangleBorder>(
                                         RoundedRectangleBorder(
                                             borderRadius:
                                                 BorderRadius.circular(18.0),
-                                            side:
-                                                BorderSide(color: Colors.white)),
+                                            side: BorderSide(
+                                                color: Colors.white)),
                                       ),
                                     ),
                                     onPressed: () {
+                                      path = 4;
+                                      pathProvider();
                                       Navigator.push(
                                           context,
                                           MaterialPageRoute(
                                               builder: (context) =>
-                                              const BookingDetails()));
+                                                  const BookingDetails()));
                                     },
-                                    child: Text(
-                                      'KARACHI',
-                                        style: GoogleFonts.josefinSans(textStyle:TextStyle(
-                                            fontSize: 14,
-                                            color: Colors.white))
-                                    )),
+                                    child: Text('KARACHI',
+                                        style: GoogleFonts.josefinSans(
+                                            textStyle: TextStyle(
+                                                fontSize: 14,
+                                                color: Colors.white)))),
                               )),
                           Container(
                               width: 120,
@@ -542,33 +579,36 @@ class _NewBookingPageState extends State<NewBookingPage> {
                                               (Set<MaterialState> states) {
                                         if (states
                                             .contains(MaterialState.pressed))
-                                          return Colors
-                                              .white70; //<-- SEE HERE
+                                          return Colors.white70; //<-- SEE HERE
                                         return null;
                                       }),
                                       backgroundColor:
-                                          MaterialStateProperty.all(Color(0xFF4A305D)),
+                                          MaterialStateProperty.all(
+                                              Color(0xFF4A305D)),
                                       shape: MaterialStateProperty.all<
                                           RoundedRectangleBorder>(
                                         RoundedRectangleBorder(
                                             borderRadius:
                                                 BorderRadius.circular(18.0),
-                                            side:
-                                                BorderSide(color: Colors.white)),
+                                            side: BorderSide(
+                                                color: Colors.white)),
                                       ),
                                     ),
                                     onPressed: () {
+                                      path = 5;
+                                      pathProvider();
                                       Navigator.push(
                                           context,
                                           MaterialPageRoute(
                                               builder: (context) =>
-                                              const BookingDetails()));
+                                                  const BookingDetails()));
                                     },
                                     child: Text(
                                       'ISLAMABAD',
-                                        style: GoogleFonts.josefinSans(textStyle:TextStyle(
-                                            fontSize: 14,
-                                            color: Colors.white)),
+                                      style: GoogleFonts.josefinSans(
+                                          textStyle: TextStyle(
+                                              fontSize: 14,
+                                              color: Colors.white)),
                                     )),
                               )),
                           Container(
@@ -578,11 +618,13 @@ class _NewBookingPageState extends State<NewBookingPage> {
                                 padding: const EdgeInsets.only(top: 10.0),
                                 child: ElevatedButton(
                                     onPressed: () {
+                                      path = 6;
+                                      pathProvider();
                                       Navigator.push(
                                           context,
                                           MaterialPageRoute(
                                               builder: (context) =>
-                                              const BookingDetails()));
+                                                  const BookingDetails()));
                                     },
                                     style: ButtonStyle(
                                       overlayColor: MaterialStateProperty
@@ -590,27 +632,26 @@ class _NewBookingPageState extends State<NewBookingPage> {
                                               (Set<MaterialState> states) {
                                         if (states
                                             .contains(MaterialState.pressed))
-                                          return Colors
-                                              .white70; //<-- SEE HERE
+                                          return Colors.white70; //<-- SEE HERE
                                         return null;
                                       }),
                                       backgroundColor:
-                                          MaterialStateProperty.all(Color(0xFF4A305D)),
+                                          MaterialStateProperty.all(
+                                              Color(0xFF4A305D)),
                                       shape: MaterialStateProperty.all<
                                           RoundedRectangleBorder>(
                                         RoundedRectangleBorder(
                                             borderRadius:
                                                 BorderRadius.circular(18.0),
-                                            side:
-                                                BorderSide(color: Colors.white)),
+                                            side: BorderSide(
+                                                color: Colors.white)),
                                       ),
                                     ),
-                                    child: Text(
-                                      'MULTAN',
-                                        style: GoogleFonts.josefinSans(textStyle:TextStyle(
-                                            fontSize: 14,
-                                            color: Colors.white))
-                                    )),
+                                    child: Text('MULTAN',
+                                        style: GoogleFonts.josefinSans(
+                                            textStyle: TextStyle(
+                                                fontSize: 14,
+                                                color: Colors.white)))),
                               ))
                         ])),
                     Container(
@@ -622,7 +663,8 @@ class _NewBookingPageState extends State<NewBookingPage> {
                       child: Column(
                         children: [
                           Container(
-                            height: 170, width: 290,
+                            height: 170,
+                            width: 290,
                             decoration: BoxDecoration(
                               //color: Colors.teal,
                               border: Border.all(
@@ -634,7 +676,8 @@ class _NewBookingPageState extends State<NewBookingPage> {
                             child: ClipRRect(
                               borderRadius: BorderRadius.circular(20),
                               child: Image.asset('Islamabad.jpg'),
-                            ),),
+                            ),
+                          ),
                           SizedBox(
                             height: 10,
                           ),
@@ -655,16 +698,19 @@ class _NewBookingPageState extends State<NewBookingPage> {
                                   borderRadius: BorderRadius.circular(10),
                                 ),
                                 //color: Colors.white,
-                               // child: //Padding(
-                                  //padding:
-                                      //const EdgeInsets.only(left: 9.0, top: 4.0),
-                                  child: Text('From:',
-                                      style: GoogleFonts.josefinSans(textStyle: TextStyle(
-                                        fontSize: 16,
-                                        color: Colors.white,
-                                      )),),
+                                // child: //Padding(
+                                //padding:
+                                //const EdgeInsets.only(left: 9.0, top: 4.0),
+                                child: Text(
+                                  'From:',
+                                  style: GoogleFonts.josefinSans(
+                                      textStyle: TextStyle(
+                                    fontSize: 16,
+                                    color: Colors.white,
+                                  )),
                                 ),
                               ),
+                            ),
                             //),
                           ),
                           Container(
@@ -674,11 +720,13 @@ class _NewBookingPageState extends State<NewBookingPage> {
                                 padding: const EdgeInsets.only(top: 10.0),
                                 child: ElevatedButton(
                                     onPressed: () {
+                                      path = 7;
+                                      pathProvider();
                                       Navigator.push(
                                           context,
                                           MaterialPageRoute(
                                               builder: (context) =>
-                                              const BookingDetails()));
+                                                  const BookingDetails()));
                                     },
                                     style: ButtonStyle(
                                       overlayColor: MaterialStateProperty
@@ -686,27 +734,26 @@ class _NewBookingPageState extends State<NewBookingPage> {
                                               (Set<MaterialState> states) {
                                         if (states
                                             .contains(MaterialState.pressed))
-                                          return Colors
-                                              .white70; //<-- SEE HERE
+                                          return Colors.white70; //<-- SEE HERE
                                         return null;
                                       }),
                                       backgroundColor:
-                                          MaterialStateProperty.all(Color(0xFF4A305D)),
+                                          MaterialStateProperty.all(
+                                              Color(0xFF4A305D)),
                                       shape: MaterialStateProperty.all<
                                           RoundedRectangleBorder>(
                                         RoundedRectangleBorder(
                                             borderRadius:
                                                 BorderRadius.circular(18.0),
-                                            side:
-                                                BorderSide(color: Colors.white)),
+                                            side: BorderSide(
+                                                color: Colors.white)),
                                       ),
                                     ),
-                                    child: Text(
-                                      'KARACHI',
-                                        style: GoogleFonts.josefinSans(textStyle:TextStyle(
-                                            fontSize: 14,
-                                            color: Colors.white))
-                                    )),
+                                    child: Text('KARACHI',
+                                        style: GoogleFonts.josefinSans(
+                                            textStyle: TextStyle(
+                                                fontSize: 14,
+                                                color: Colors.white)))),
                               )),
                           Container(
                               width: 120,
@@ -720,34 +767,35 @@ class _NewBookingPageState extends State<NewBookingPage> {
                                               (Set<MaterialState> states) {
                                         if (states
                                             .contains(MaterialState.pressed))
-                                          return Colors
-                                              .white70; //<-- SEE HERE
+                                          return Colors.white70; //<-- SEE HERE
                                         return null;
                                       }),
                                       backgroundColor:
-                                          MaterialStateProperty.all(Color(0xFF4A305D)),
+                                          MaterialStateProperty.all(
+                                              Color(0xFF4A305D)),
                                       shape: MaterialStateProperty.all<
                                           RoundedRectangleBorder>(
                                         RoundedRectangleBorder(
                                             borderRadius:
                                                 BorderRadius.circular(18.0),
-                                            side:
-                                                BorderSide(color: Colors.white)),
+                                            side: BorderSide(
+                                                color: Colors.white)),
                                       ),
                                     ),
                                     onPressed: () {
+                                      path = 8;
+                                      pathProvider();
                                       Navigator.push(
                                           context,
                                           MaterialPageRoute(
                                               builder: (context) =>
-                                              const BookingDetails()));
+                                                  const BookingDetails()));
                                     },
-                                    child: Text(
-                                      'LAHORE',
-                                        style: GoogleFonts.josefinSans(textStyle:TextStyle(
-                                            fontSize: 14,
-                                            color: Colors.white))
-                                    )),
+                                    child: Text('LAHORE',
+                                        style: GoogleFonts.josefinSans(
+                                            textStyle: TextStyle(
+                                                fontSize: 14,
+                                                color: Colors.white)))),
                               )),
                           Container(
                             width: 120,
@@ -763,8 +811,8 @@ class _NewBookingPageState extends State<NewBookingPage> {
                                       return Colors.white70; //<-- SEE HERE
                                     return null;
                                   }),
-                                  backgroundColor:
-                                      MaterialStateProperty.all(Color(0xFF4A305D)),
+                                  backgroundColor: MaterialStateProperty.all(
+                                      Color(0xFF4A305D)),
                                   shape: MaterialStateProperty.all<
                                       RoundedRectangleBorder>(
                                     RoundedRectangleBorder(
@@ -774,18 +822,19 @@ class _NewBookingPageState extends State<NewBookingPage> {
                                   ),
                                 ),
                                 onPressed: () {
+                                  path = 9;
+                                  pathProvider();
                                   Navigator.push(
                                       context,
                                       MaterialPageRoute(
                                           builder: (context) =>
-                                          const BookingDetails()));
+                                              const BookingDetails()));
                                 },
-                                child: Text(
-                                  'MULTAN',
-                                    style: GoogleFonts.josefinSans(textStyle:TextStyle(
-                                        fontSize: 14,
-                                        color: Colors.white))
-                                ),
+                                child: Text('MULTAN',
+                                    style: GoogleFonts.josefinSans(
+                                        textStyle: TextStyle(
+                                            fontSize: 14,
+                                            color: Colors.white))),
                               ),
                             ),
                           ),

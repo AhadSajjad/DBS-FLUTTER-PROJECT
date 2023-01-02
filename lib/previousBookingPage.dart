@@ -171,7 +171,11 @@ class _PreviousBookingPageState extends State<PreviousBookingPage> {
                                 return AlertDialog(
                                   backgroundColor: Color(0xFF4A305D),
                                   title: const Text(
-                                      'These are your booking details:', style: TextStyle(color: Colors.white,fontWeight: FontWeight.w600),),
+                                    'These are your booking details:',
+                                    style: TextStyle(
+                                        color: Colors.white,
+                                        fontWeight: FontWeight.w600),
+                                  ),
                                   content: Column(
                                     mainAxisSize: MainAxisSize.min,
                                     crossAxisAlignment:
@@ -198,91 +202,144 @@ class _PreviousBookingPageState extends State<PreviousBookingPage> {
                                       // Text("Coach: $coach",style: TextStyle(color: Colors.white)),
                                       // SizedBox(height: 5,),
                                       // Text("Price: $price",style: TextStyle(color: Colors.white)),
-                                        SingleChildScrollView(
-                                controller: _scrollController,
-                                scrollDirection: Axis.horizontal,
-                                child:DataTable(
-                                          columns: [
-                                            DataColumn(
-                                              label: Text('Passenger ID',style: TextStyle(color: Colors.white),),
+                                      SingleChildScrollView(
+                                        controller: _scrollController,
+                                        scrollDirection: Axis.horizontal,
+                                        child: DataTable(columns: [
+                                          DataColumn(
+                                            label: Text(
+                                              'Passenger ID',
+                                              style: TextStyle(
+                                                  color: Colors.white),
                                             ),
-                                            DataColumn(
-                                              label: Text('First Name',style: TextStyle(color: Colors.white)),
-                                            ),
-                                            DataColumn(
-                                              label: Text('Last Name',style: TextStyle(color: Colors.white)),
-                                            ),
-                                            DataColumn(
-                                              label: Text('Email',style: TextStyle(color: Colors.white)),
-                                            ),
-                                            DataColumn(
-                                              label: Text('Contact',style: TextStyle(color: Colors.white)),
-                                            ),
-                                            DataColumn(
-                                              label: Text('Booking ID',style: TextStyle(color: Colors.white)),
-                                            ),
-                                            DataColumn(
-                                              label: Text('Booking Date',style: TextStyle(color: Colors.white)),
-                                            ),
-                                            DataColumn(
-                                              label: Text('Train',style: TextStyle(color: Colors.white)),
-                                            ),
-                                            DataColumn(
-                                              label: Text('Seat',style: TextStyle(color: Colors.white)),
-                                            ),
-                                            DataColumn(
-                                              label: Text('Coach',style: TextStyle(color: Colors.white)),
-                                            ),
-                                            DataColumn(
-                                              label: Text('Price',style: TextStyle(color: Colors.white)),
-                                            ),
-                                          ],      //json.decode(response.body)['data'][0]['track_ID']
-                                          rows: [
+                                          ),
+                                          DataColumn(
+                                            label: Text('First Name',
+                                                style: TextStyle(
+                                                    color: Colors.white)),
+                                          ),
+                                          DataColumn(
+                                            label: Text('Last Name',
+                                                style: TextStyle(
+                                                    color: Colors.white)),
+                                          ),
+                                          DataColumn(
+                                            label: Text('Email',
+                                                style: TextStyle(
+                                                    color: Colors.white)),
+                                          ),
+                                          DataColumn(
+                                            label: Text('Contact',
+                                                style: TextStyle(
+                                                    color: Colors.white)),
+                                          ),
+                                          DataColumn(
+                                            label: Text('Booking ID',
+                                                style: TextStyle(
+                                                    color: Colors.white)),
+                                          ),
+                                          DataColumn(
+                                            label: Text('Booking Date',
+                                                style: TextStyle(
+                                                    color: Colors.white)),
+                                          ),
+                                          DataColumn(
+                                            label: Text('Train',
+                                                style: TextStyle(
+                                                    color: Colors.white)),
+                                          ),
+                                          DataColumn(
+                                            label: Text('Seat',
+                                                style: TextStyle(
+                                                    color: Colors.white)),
+                                          ),
+                                          DataColumn(
+                                            label: Text('Coach',
+                                                style: TextStyle(
+                                                    color: Colors.white)),
+                                          ),
+                                          DataColumn(
+                                            label: Text('Price',
+                                                style: TextStyle(
+                                                    color: Colors.white)),
+                                          ),
+                                        ], //json.decode(response.body)['data'][0]['track_ID']
+                                            rows: [
                                               DataRow(cells: [
-                                                DataCell(Text('$pass_id',style: TextStyle(color: Colors.white))),
-                                                DataCell(Text('$first_name',style: TextStyle(color: Colors.white))),
-                                                DataCell(Text('$last_name',style: TextStyle(color: Colors.white))),
-                                                DataCell(Text('$email',style: TextStyle(color: Colors.white))),
-                                                DataCell(Text('$contact',style: TextStyle(color: Colors.white))),
-                                                DataCell(Text('$booking_id',style: TextStyle(color: Colors.white))),
-                                                DataCell(Text('$booking_date',style: TextStyle(color: Colors.white))),
-                                                DataCell(Text('$train',style: TextStyle(color: Colors.white))),
-                                                DataCell(Text('$seat',style: TextStyle(color: Colors.white))),
-                                                DataCell(Text('$coach',style: TextStyle(color: Colors.white))),
-                                                DataCell(Text('$price',style: TextStyle(color: Colors.white))),
+                                                DataCell(Text('$pass_id',
+                                                    style: TextStyle(
+                                                        color: Colors.white))),
+                                                DataCell(Text('$first_name',
+                                                    style: TextStyle(
+                                                        color: Colors.white))),
+                                                DataCell(Text('$last_name',
+                                                    style: TextStyle(
+                                                        color: Colors.white))),
+                                                DataCell(Text('$email',
+                                                    style: TextStyle(
+                                                        color: Colors.white))),
+                                                DataCell(Text('$contact',
+                                                    style: TextStyle(
+                                                        color: Colors.white))),
+                                                DataCell(Text('$booking_id',
+                                                    style: TextStyle(
+                                                        color: Colors.white))),
+                                                DataCell(Text('$booking_date',
+                                                    style: TextStyle(
+                                                        color: Colors.white))),
+                                                DataCell(Text('$train',
+                                                    style: TextStyle(
+                                                        color: Colors.white))),
+                                                DataCell(Text('$seat',
+                                                    style: TextStyle(
+                                                        color: Colors.white))),
+                                                DataCell(Text('$coach',
+                                                    style: TextStyle(
+                                                        color: Colors.white))),
+                                                DataCell(Text('$price',
+                                                    style: TextStyle(
+                                                        color: Colors.white))),
                                               ])
-                                          ]),
-                                        )
+                                            ]),
+                                      )
                                     ],
                                   ),
                                   actions: <Widget>[
                                     ElevatedButton(
                                       style: ButtonStyle(
-                                        overlayColor:
-                                        MaterialStateProperty.resolveWith<Color?>(
+                                        overlayColor: MaterialStateProperty
+                                            .resolveWith<Color?>(
                                                 (Set<MaterialState> states) {
-                                              if (states.contains(MaterialState.pressed))
-                                                return Colors.white70; //<-- SEE HERE
-                                              return null;
-                                            }),
+                                          if (states
+                                              .contains(MaterialState.pressed))
+                                            return Colors
+                                                .white70; //<-- SEE HERE
+                                          return null;
+                                        }),
                                         backgroundColor:
-                                        MaterialStateProperty.all(Colors.white),
+                                            MaterialStateProperty.all(
+                                                Colors.white),
                                         shape: MaterialStateProperty.all<
                                             RoundedRectangleBorder>(
                                           RoundedRectangleBorder(
                                               borderRadius:
-                                              BorderRadius.circular(18.0),
-                                              side: BorderSide(color: Colors.white)),
+                                                  BorderRadius.circular(18.0),
+                                              side: BorderSide(
+                                                  color: Colors.white)),
                                         ),
                                       ),
                                       onPressed: () {
                                         Navigator.of(context).pop();
                                       },
-                                      child: Text('Close',style: TextStyle(color: Color(0xFF4A305D),fontWeight: FontWeight.w800)),
+                                      child: Text('Close',
+                                          style: TextStyle(
+                                              color: Color(0xFF4A305D),
+                                              fontWeight: FontWeight.w800)),
                                     ),
                                   ],
                                 );
                               }
+
                               showDialog(
                                 context: context,
                                 builder: (BuildContext context) =>
@@ -292,7 +349,7 @@ class _PreviousBookingPageState extends State<PreviousBookingPage> {
                               print(
                                   'Request failed with status: ${response.statusCode}');
                               Fluttertoast.showToast(
-                                msg: "Booking ID does not exist!",
+                                msg: "Passenger ID does not exist!",
                                 toastLength: Toast.LENGTH_SHORT,
                                 timeInSecForIosWeb: 2,
                                 textColor: Colors.white,
@@ -306,30 +363,100 @@ class _PreviousBookingPageState extends State<PreviousBookingPage> {
                                 textStyle: const TextStyle(
                                     fontSize: 14, color: Colors.white)))),
                     const SizedBox(width: 10),
-                    // ElevatedButton(
-                    //     style: ButtonStyle(
-                    //       overlayColor:
-                    //           MaterialStateProperty.resolveWith<Color?>(
-                    //               (Set<MaterialState> states) {
-                    //         if (states.contains(MaterialState.pressed)) {
-                    //           return Colors.white;
-                    //         } //<-- SEE HERE
-                    //         return null;
-                    //       }),
-                    //       backgroundColor: MaterialStateProperty.all(
-                    //           const Color(0xFF4A305D)),
-                    //       shape:
-                    //           MaterialStateProperty.all<RoundedRectangleBorder>(
-                    //         RoundedRectangleBorder(
-                    //             borderRadius: BorderRadius.circular(18.0),
-                    //             side: const BorderSide(color: Colors.white)),
-                    //       ),
-                    //     ),
-                    //     onPressed: () {},
-                    //     child: Text('CANCEL TICKET',
-                    //         style: GoogleFonts.josefinSans(
-                    //             textStyle: const TextStyle(
-                    //                 fontSize: 14, color: Colors.white))))
+                    ElevatedButton(
+                        style: ButtonStyle(
+                          overlayColor:
+                              MaterialStateProperty.resolveWith<Color?>(
+                                  (Set<MaterialState> states) {
+                            if (states.contains(MaterialState.pressed)) {
+                              return Colors.white;
+                            } //<-- SEE HERE
+                            return null;
+                          }),
+                          backgroundColor: MaterialStateProperty.all(
+                              const Color(0xFF4A305D)),
+                          shape:
+                              MaterialStateProperty.all<RoundedRectangleBorder>(
+                            RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(18.0),
+                                side: const BorderSide(color: Colors.white)),
+                          ),
+                        ),
+                        onPressed: () {
+                          if (passenger.text == "") {
+                            Fluttertoast.showToast(
+                              msg: "Please enter your Passenger ID!",
+                              toastLength: Toast.LENGTH_SHORT,
+                              timeInSecForIosWeb: 2,
+                              textColor: Colors.white,
+                              fontSize: 16.0,
+                            );
+                          } else {
+                            Widget _buildPopupDialog(BuildContext context) {
+                              return AlertDialog(
+                                backgroundColor: Color(0xFF4A305D),
+                                title: const Text(
+                                  'To cancel your ticket, please follow the below mentioned procedure',
+                                  style: TextStyle(
+                                      color: Colors.white,
+                                      fontWeight: FontWeight.w600),
+                                ),
+                                content: Column(
+                                  mainAxisSize: MainAxisSize.min,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      "Call our customer support!",
+                                      style: TextStyle(color: Colors.white),
+                                    )
+                                  ],
+                                ),
+                                actions: <Widget>[
+                                  ElevatedButton(
+                                    style: ButtonStyle(
+                                      overlayColor: MaterialStateProperty
+                                          .resolveWith<Color?>(
+                                              (Set<MaterialState> states) {
+                                        if (states
+                                            .contains(MaterialState.pressed))
+                                          return Colors.white70; //<-- SEE HERE
+                                        return null;
+                                      }),
+                                      backgroundColor:
+                                          MaterialStateProperty.all(
+                                              Colors.white),
+                                      shape: MaterialStateProperty.all<
+                                          RoundedRectangleBorder>(
+                                        RoundedRectangleBorder(
+                                            borderRadius:
+                                                BorderRadius.circular(18.0),
+                                            side: BorderSide(
+                                                color: Colors.white)),
+                                      ),
+                                    ),
+                                    onPressed: () {
+                                      Navigator.of(context).pop();
+                                    },
+                                    child: Text('Close',
+                                        style: TextStyle(
+                                            color: Color(0xFF4A305D),
+                                            fontWeight: FontWeight.w800)),
+                                  ),
+                                ],
+                              );
+                            }
+
+                            showDialog(
+                              context: context,
+                              builder: (BuildContext context) =>
+                                  _buildPopupDialog(context),
+                            );
+                          }
+                        },
+                        child: Text('CANCEL TICKET',
+                            style: GoogleFonts.josefinSans(
+                                textStyle: const TextStyle(
+                                    fontSize: 14, color: Colors.white))))
                   ]),
             ]),
           )
